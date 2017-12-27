@@ -1,0 +1,14 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "noahschocolate:mortar_and_pestle"
+    },
+    {
+      "item": "noahschocolate:weed_bud"
+    }
+  ],
+  "result": {
+    "item": "noahschocolate:weed"
+  }
+}

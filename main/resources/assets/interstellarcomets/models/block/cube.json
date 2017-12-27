@@ -1,0 +1,12 @@
+{
+    "parent": "block/cube",
+    "textures": {
+        "particle": "noahschocolate:blocks/present",
+        "down": "noahschocolate:blocks/present_bot",
+        "up": "noahschocolate:blocks/present_top",
+        "north": "noahschocolate:blocks/present",
+        "east": "noahschocolate:blocks/present",
+        "south": "noahschocolate:blocks/present",
+        "west": "noahschocolate:blocks/present"
+    }
+}
