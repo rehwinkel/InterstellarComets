@@ -27,6 +27,8 @@ public class ModItems {
 	@SubscribeEvent
 	public void registerItem(RegistryEvent.Register<Item> event){
 		IForgeRegistry<Item> registry = event.getRegistry();
+		
+		registry.register(shit);
 	}
 	
 	@SubscribeEvent
