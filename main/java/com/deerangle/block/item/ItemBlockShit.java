@@ -1,4 +1,4 @@
-package com.deerangle.block;
+package com.deerangle.block.item;
 
 import net.minecraft.block.Block;
 import net.minecraft.item.ItemBlock;

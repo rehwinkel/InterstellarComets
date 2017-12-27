@@ -7,7 +7,7 @@ import net.minecraft.item.ItemStack;
 
 public class ModTabs {
 
-	public static CreativeTabs tab_main = new CreativeTabs("") {
+	public static CreativeTabs tab_main = new CreativeTabs(InterstellarComets.MODID + "_main") {
 		
 		@Override
 		public ItemStack getTabIconItem() {
