@@ -12,7 +12,7 @@ import net.minecraftforge.registries.IForgeRegistry;
 
 public class ModEntities {
 
-	private EntityEntry ENTITY_COMET = new EntityEntry(EntityComet.class, "comet");
+	private EntityEntry ENTITY_COMET = new EntityEntry(EntityComet.class, "comet").setRegistryName("comet");
 
 	private static final ModEntities instance = new ModEntities();
 	

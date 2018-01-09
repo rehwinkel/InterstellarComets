@@ -12,8 +12,7 @@ public class EntityComet extends Entity {
 
 	@Override
 	protected void entityInit() {
-		// TODO Auto-generated method stub
-
+		System.out.println("wüoghjweg");
 	}
 
 	@Override
