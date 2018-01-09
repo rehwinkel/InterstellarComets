@@ -18,7 +18,7 @@ public class BlockTest extends Block {
 	@Override
 	public boolean onBlockActivated(World worldIn, BlockPos pos, IBlockState state, EntityPlayer playerIn,
 			EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ) {
-		worldIn.createExplosion(playerIn, playerIn.posX, playerIn.posY, playerIn.posZ, 25F, true);
+		worldIn.createExplosion(playerIn, playerIn.posX, playerIn.posY, playerIn.posZ, 100F, true);
 		return super.onBlockActivated(worldIn, pos, state, playerIn, hand, facing, hitX, hitY, hitZ);
 	}
 }
