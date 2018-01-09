@@ -84,7 +84,7 @@ public class BigExplosion {
 	 */
 	public void doExplosionA() {
 		Set<BlockPos> set = Sets.<BlockPos>newHashSet();
-		int i = (int) (size);
+		int i = (int) (64);
 
 		for (int j = 0; j < i; ++j) {
 			for (int k = 0; k < i; ++k) {
@@ -107,7 +107,7 @@ public class BigExplosion {
 							IBlockState iblockstate = this.world.getBlockState(blockpos);
 
 							if (iblockstate.getMaterial() != Material.AIR) {
-								float f2 = this.exploder != null ? this.exploder.getExplosionResistance(fakeExplosion, this.world, blockpos, iblockstate) : iblockstate.getBlock().getExplosionResistance(world, blockpos, (Entity) null, fakeExplosion);
+								float f2 = this.exploder != null ? 0/*this.exploder.getExplosionResistance(fakeExplosion, this.world, blockpos, iblockstate)*/ : /*iblockstate.getBlock().getExplosionResistance(world, blockpos, (Entity) null, fakeExplosion)*/0;
 								f -= (f2 + 0.3F) * 0.3F;
 							}
 
