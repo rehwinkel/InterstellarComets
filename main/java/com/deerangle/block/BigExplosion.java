@@ -50,7 +50,7 @@ public class BigExplosion {
 	 */
 	private final Map<EntityPlayer, Vec3d> playerKnockbackMap;
 	private final Vec3d position;
-	private Explosion fakeExposion;
+	public Explosion fakeExplosion;
 
 	@SideOnly(Side.CLIENT)
 	public BigExplosion(World worldIn, Entity entityIn, double x, double y, double z, float size, List<BlockPos> affectedPositions) {
@@ -76,7 +76,7 @@ public class BigExplosion {
 		this.causesFire = flaming;
 		this.damagesTerrain = damagesTerrain;
 		this.position = new Vec3d(this.x, this.y, this.z);
-		fakeExposion = new Explosion(worldIn, entityIn, x, y, z, size, flaming, damagesTerrain);
+		fakeExplosion = new Explosion(worldIn, entityIn, x, y, z, size, flaming, damagesTerrain);
 	}
 
 	/**
@@ -107,11 +107,11 @@ public class BigExplosion {
 							IBlockState iblockstate = this.world.getBlockState(blockpos);
 
 							if (iblockstate.getMaterial() != Material.AIR) {
-								float f2 = this.exploder != null ? this.exploder.getExplosionResistance(fakeExposion, this.world, blockpos, iblockstate) : iblockstate.getBlock().getExplosionResistance(world, blockpos, (Entity) null, fakeExposion);
+								float f2 = this.exploder != null ? this.exploder.getExplosionResistance(fakeExplosion, this.world, blockpos, iblockstate) : iblockstate.getBlock().getExplosionResistance(world, blockpos, (Entity) null, fakeExplosion);
 								f -= (f2 + 0.3F) * 0.3F;
 							}
 
-							if (f > 0.0F && (this.exploder == null || this.exploder.canExplosionDestroyBlock(fakeExposion, this.world, blockpos, iblockstate, f))) {
+							if (f > 0.0F && (this.exploder == null || this.exploder.canExplosionDestroyBlock(fakeExplosion, this.world, blockpos, iblockstate, f))) {
 								set.add(blockpos);
 							}
 
@@ -133,7 +133,7 @@ public class BigExplosion {
 		int j2 = MathHelper.floor(this.z - (double) f3 - 1.0D);
 		int j1 = MathHelper.floor(this.z + (double) f3 + 1.0D);
 		List<Entity> list = this.world.getEntitiesWithinAABBExcludingEntity(this.exploder, new AxisAlignedBB((double) k1, (double) i2, (double) j2, (double) l1, (double) i1, (double) j1));
-		net.minecraftforge.event.ForgeEventFactory.onExplosionDetonate(this.world, fakeExposion, list, f3);
+		net.minecraftforge.event.ForgeEventFactory.onExplosionDetonate(this.world, fakeExplosion, list, f3);
 		Vec3d vec3d = new Vec3d(this.x, this.y, this.z);
 
 		for (int k2 = 0; k2 < list.size(); ++k2) {
@@ -154,7 +154,7 @@ public class BigExplosion {
 						d9 = d9 / d13;
 						double d14 = (double) this.world.getBlockDensity(vec3d, entity.getEntityBoundingBox());
 						double d10 = (1.0D - d12) * d14;
-						entity.attackEntityFrom(DamageSource.causeExplosionDamage(fakeExposion), (float) ((int) ((d10 * d10 + d10) / 2.0D * 7.0D * (double) f3 + 1.0D)));
+						entity.attackEntityFrom(DamageSource.causeExplosionDamage(fakeExplosion), (float) ((int) ((d10 * d10 + d10) / 2.0D * 7.0D * (double) f3 + 1.0D)));
 						double d11 = d10;
 
 						if (entity instanceof EntityLivingBase) {
@@ -216,11 +216,11 @@ public class BigExplosion {
 				}
 
 				if (iblockstate.getMaterial() != Material.AIR) {
-					if (block.canDropFromExplosion(fakeExposion)) {
+					if (block.canDropFromExplosion(fakeExplosion)) {
 						block.dropBlockAsItemWithChance(this.world, blockpos, this.world.getBlockState(blockpos), 1.0F / this.size, 0);
 					}
 
-					block.onBlockExploded(this.world, blockpos, fakeExposion);
+					block.onBlockExploded(this.world, blockpos, fakeExplosion);
 				}
 			}
 		}

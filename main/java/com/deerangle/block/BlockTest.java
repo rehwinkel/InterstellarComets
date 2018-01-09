@@ -25,13 +25,13 @@ public class BlockTest extends Block {
 		return super.onBlockActivated(worldIn, pos, state, playerIn, hand, facing, hitX, hitY, hitZ);
 	}
 
-	public Explosion createExplosion(World world, @Nullable Entity entityIn, double x, double y, double z, float strength, boolean isSmoking) {
+	public BigExplosion createExplosion(World world, @Nullable Entity entityIn, double x, double y, double z, float strength, boolean isSmoking) {
 		return this.newExplosion(world, entityIn, x, y, z, strength, false, isSmoking);
 	}
 	
-	public Explosion newExplosion(World world, @Nullable Entity entityIn, double x, double y, double z, float strength, boolean isFlaming, boolean isSmoking) {
-		Explosion explosion = new Explosion(world, entityIn, x, y, z, strength, isFlaming, isSmoking);
-		if (net.minecraftforge.event.ForgeEventFactory.onExplosionStart(world, explosion))
+	public BigExplosion newExplosion(World world, @Nullable Entity entityIn, double x, double y, double z, float strength, boolean isFlaming, boolean isSmoking) {
+		BigExplosion explosion = new BigExplosion(world, entityIn, x, y, z, strength, isFlaming, isSmoking);
+		if (net.minecraftforge.event.ForgeEventFactory.onExplosionStart(world, explosion.fakeExplosion))
 			return explosion;
 		explosion.doExplosionA();
 		explosion.doExplosionB(true);
