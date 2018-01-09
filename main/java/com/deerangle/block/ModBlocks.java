@@ -22,11 +22,13 @@ import net.minecraftforge.registries.IForgeRegistry;
 public class ModBlocks {
 
 	public static Block shit2;
+	public static Block test;
 	
 	private static final ModBlocks instance = new ModBlocks();
 	
 	public static void load(){
 		shit2 = new BlockBase(Material.CACTUS).setRegistryName("shit2").setUnlocalizedName("shit2").setCreativeTab(ModTabs.tab_main);
+		test = new BlockTest(Material.TNT).setRegistryName("test").setUnlocalizedName("test").setCreativeTab(ModTabs.tab_main);
 		
 		MinecraftForge.EVENT_BUS.register(instance);
 	}
@@ -36,6 +38,7 @@ public class ModBlocks {
 		IForgeRegistry<Block> registry = event.getRegistry();
 		
 		register(registry, shit2, new ItemBlockShit(shit2));
+		register(registry, test);
 	}
 	
 	private void register(IForgeRegistry<Block> registry, Block block) {
