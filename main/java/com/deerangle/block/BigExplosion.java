@@ -88,13 +88,13 @@ public class BigExplosion {
 		Set<BlockPos> set = Sets.<BlockPos>newHashSet();
 		int i = 16;
 
-		for (int j = 0; j < 16; ++j) {
-			for (int k = 0; k < 16; ++k) {
-				for (int l = 0; l < 16; ++l) {
-					if (j == 0 || j == 15 || k == 0 || k == 15 || l == 0 || l == 15) {
-						double d0 = (double) ((float) j / 15.0F * 2.0F - 1.0F);
-						double d1 = (double) ((float) k / 15.0F * 2.0F - 1.0F);
-						double d2 = (double) ((float) l / 15.0F * 2.0F - 1.0F);
+		for (int j = 0; j < 64; ++j) {
+			for (int k = 0; k < 64; ++k) {
+				for (int l = 0; l < 64; ++l) {
+					if (j == 0 || j == 63 || k == 0 || k == 63 || l == 0 || l == 63) {
+						double d0 = (double) ((float) j / 63.0F * 2.0F - 1.0F);
+						double d1 = (double) ((float) k / 63.0F * 2.0F - 1.0F);
+						double d2 = (double) ((float) l / 63.0F * 2.0F - 1.0F);
 						double d3 = Math.sqrt(d0 * d0 + d1 * d1 + d2 * d2);
 						d0 = d0 / d3;
 						d1 = d1 / d3;
