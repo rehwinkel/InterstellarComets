@@ -20,13 +20,12 @@ public class EntityComet extends Entity {
 	@Override
 	public void onEntityUpdate() {
 		super.onEntityUpdate();
-		//System.out.println(getPosition());
 	}
 	
 	@Override
 	public void onUpdate() {
 		super.onUpdate();
-		System.out.println(getPosition());
+		//System.out.println(getPosition());
 	}
 
 	@Override
