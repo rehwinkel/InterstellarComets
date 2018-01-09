@@ -1,5 +1,6 @@
 package com.deerangle.block;
 
+import com.deerangle.item.ModItems;
 import com.deerangle.main.InterstellarComets;
 import com.deerangle.main.ModTabs;
 
@@ -8,6 +9,7 @@ import net.minecraft.block.BlockStone;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;
@@ -16,6 +18,7 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraftforge.items.CapabilityItemHandler;
 import net.minecraftforge.items.IItemHandler;
+import net.minecraftforge.items.ItemHandlerHelper;
 import net.minecraftforge.items.ItemStackHandler;
 
 public class BlockPedastal extends Block {
@@ -37,15 +40,14 @@ public class BlockPedastal extends Block {
 			IItemHandler itemHandler = tile.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY, facing);
 			if (!player.isSneaking()) {
 				if (!itemHandler.getStackInSlot(0).isEmpty()) {
-					player.setHeldItem(hand, itemHandler.extractItem(0, 64, false));
+					if(player.getHeldItem(hand).isEmpty()){
+						player.setHeldItem(hand, itemHandler.extractItem(0, 64, false));
+					}
 				} else {
-					ItemStack stack = player.getHeldItem(hand).copy();
-					stack.setCount(1);
-					itemHandler.insertItem(0, stack, false);
-					
-					ItemStack stack2 = player.getHeldItem(hand).copy();
-					stack2.setCount(stack2.getCount() - 1);
-					player.setHeldItem(hand, stack2);
+					if(true/*player.getHeldItem(hand).getItem() == Item.getItemFromBlock(ModBlocks.block_comet)*/){
+						itemHandler.insertItem(0, getStackWithCount(player.getHeldItem(hand), 1), false);
+						player.setHeldItem(hand, getStackWithCount(player.getHeldItem(hand), player.getHeldItem(hand).getCount() - 1));
+					}
 				}
 				tile.markDirty();
 			}else{
@@ -54,6 +56,16 @@ public class BlockPedastal extends Block {
 			}
 		}
 		return true;
+	}
+	
+	private ItemStack getStackWithCount(ItemStack stack, int count){
+		ItemStack stack2 = stack.copy();
+		stack2.setCount(count);
+		if (count > 0){
+			return stack2;
+		}else{
+			return ItemStack.EMPTY;
+		}
 	}
 	
 	@Override

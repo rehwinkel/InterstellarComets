@@ -25,6 +25,7 @@ public class ModBlocks {
 	public static Block test;
 	
 	public static Block pedastal;
+	public static Block block_comet;
 	
 	private static final ModBlocks instance = new ModBlocks();
 	
@@ -33,6 +34,7 @@ public class ModBlocks {
 		test = new BlockTest(Material.TNT).setRegistryName("test").setUnlocalizedName("test").setCreativeTab(ModTabs.tab_main);
 		
 		pedastal = new BlockPedastal();
+		block_comet = new BlockComet();
 		
 		MinecraftForge.EVENT_BUS.register(instance);
 	}
@@ -45,6 +47,7 @@ public class ModBlocks {
 		register(registry, test);
 
 		register(registry, pedastal);
+		register(registry, block_comet);
 	}
 	
 	private void register(IForgeRegistry<Block> registry, Block block) {
