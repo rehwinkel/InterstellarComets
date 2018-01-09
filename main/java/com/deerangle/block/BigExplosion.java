@@ -53,14 +53,12 @@ public class BigExplosion {
 	private Explosion fakeExposion;
 
 	@SideOnly(Side.CLIENT)
-	public BigExplosion(World worldIn, Entity entityIn, double x, double y, double z, float size,
-			List<BlockPos> affectedPositions) {
+	public BigExplosion(World worldIn, Entity entityIn, double x, double y, double z, float size, List<BlockPos> affectedPositions) {
 		this(worldIn, entityIn, x, y, z, size, false, true, affectedPositions);
 	}
 
 	@SideOnly(Side.CLIENT)
-	public BigExplosion(World worldIn, Entity entityIn, double x, double y, double z, float size, boolean causesFire,
-			boolean damagesTerrain, List<BlockPos> affectedPositions) {
+	public BigExplosion(World worldIn, Entity entityIn, double x, double y, double z, float size, boolean causesFire, boolean damagesTerrain, List<BlockPos> affectedPositions) {
 		this(worldIn, entityIn, x, y, z, size, causesFire, damagesTerrain);
 		this.affectedBlockPositions.addAll(affectedPositions);
 	}
@@ -88,13 +86,13 @@ public class BigExplosion {
 		Set<BlockPos> set = Sets.<BlockPos>newHashSet();
 		int i = 16;
 
-		for (int j = 0; j < 64; ++j) {
-			for (int k = 0; k < 64; ++k) {
-				for (int l = 0; l < 64; ++l) {
-					if (j == 0 || j == 63 || k == 0 || k == 63 || l == 0 || l == 63) {
-						double d0 = (double) ((float) j / 63.0F * 2.0F - 1.0F);
-						double d1 = (double) ((float) k / 63.0F * 2.0F - 1.0F);
-						double d2 = (double) ((float) l / 63.0F * 2.0F - 1.0F);
+		for (int j = 0; j < i; ++j) {
+			for (int k = 0; k < i; ++k) {
+				for (int l = 0; l < i; ++l) {
+					if (j == 0 || j == (i - 1) || k == 0 || k == (i - 1) || l == 0 || l == (i - 1)) {
+						double d0 = (double) ((float) j / (float) (i - 1) * 2.0F - 1.0F);
+						double d1 = (double) ((float) k / (float) (i - 1) * 2.0F - 1.0F);
+						double d2 = (double) ((float) l / (float) (i - 1) * 2.0F - 1.0F);
 						double d3 = Math.sqrt(d0 * d0 + d1 * d1 + d2 * d2);
 						d0 = d0 / d3;
 						d1 = d1 / d3;
@@ -109,16 +107,11 @@ public class BigExplosion {
 							IBlockState iblockstate = this.world.getBlockState(blockpos);
 
 							if (iblockstate.getMaterial() != Material.AIR) {
-								float f2 = this.exploder != null
-										? this.exploder.getExplosionResistance(fakeExposion, this.world, blockpos,
-												iblockstate)
-										: iblockstate.getBlock().getExplosionResistance(world, blockpos, (Entity) null,
-												fakeExposion);
+								float f2 = this.exploder != null ? this.exploder.getExplosionResistance(fakeExposion, this.world, blockpos, iblockstate) : iblockstate.getBlock().getExplosionResistance(world, blockpos, (Entity) null, fakeExposion);
 								f -= (f2 + 0.3F) * 0.3F;
 							}
 
-							if (f > 0.0F && (this.exploder == null || this.exploder
-									.canExplosionDestroyBlock(fakeExposion, this.world, blockpos, iblockstate, f))) {
+							if (f > 0.0F && (this.exploder == null || this.exploder.canExplosionDestroyBlock(fakeExposion, this.world, blockpos, iblockstate, f))) {
 								set.add(blockpos);
 							}
 
@@ -139,8 +132,7 @@ public class BigExplosion {
 		int i1 = MathHelper.floor(this.y + (double) f3 + 1.0D);
 		int j2 = MathHelper.floor(this.z - (double) f3 - 1.0D);
 		int j1 = MathHelper.floor(this.z + (double) f3 + 1.0D);
-		List<Entity> list = this.world.getEntitiesWithinAABBExcludingEntity(this.exploder,
-				new AxisAlignedBB((double) k1, (double) i2, (double) j2, (double) l1, (double) i1, (double) j1));
+		List<Entity> list = this.world.getEntitiesWithinAABBExcludingEntity(this.exploder, new AxisAlignedBB((double) k1, (double) i2, (double) j2, (double) l1, (double) i1, (double) j1));
 		net.minecraftforge.event.ForgeEventFactory.onExplosionDetonate(this.world, fakeExposion, list, f3);
 		Vec3d vec3d = new Vec3d(this.x, this.y, this.z);
 
@@ -162,8 +154,7 @@ public class BigExplosion {
 						d9 = d9 / d13;
 						double d14 = (double) this.world.getBlockDensity(vec3d, entity.getEntityBoundingBox());
 						double d10 = (1.0D - d12) * d14;
-						entity.attackEntityFrom(DamageSource.causeExplosionDamage(fakeExposion),
-								(float) ((int) ((d10 * d10 + d10) / 2.0D * 7.0D * (double) f3 + 1.0D)));
+						entity.attackEntityFrom(DamageSource.causeExplosionDamage(fakeExposion), (float) ((int) ((d10 * d10 + d10) / 2.0D * 7.0D * (double) f3 + 1.0D)));
 						double d11 = d10;
 
 						if (entity instanceof EntityLivingBase) {
@@ -177,8 +168,7 @@ public class BigExplosion {
 						if (entity instanceof EntityPlayer) {
 							EntityPlayer entityplayer = (EntityPlayer) entity;
 
-							if (!entityplayer.isSpectator()
-									&& (!entityplayer.isCreative() || !entityplayer.capabilities.isFlying)) {
+							if (!entityplayer.isSpectator() && (!entityplayer.isCreative() || !entityplayer.capabilities.isFlying)) {
 								this.playerKnockbackMap.put(entityplayer, new Vec3d(d5 * d10, d7 * d10, d9 * d10));
 							}
 						}
@@ -192,9 +182,7 @@ public class BigExplosion {
 	 * Does the second part of the explosion (sound, particles, drop spawn)
 	 */
 	public void doExplosionB(boolean spawnParticles) {
-		this.world.playSound((EntityPlayer) null, this.x, this.y, this.z, SoundEvents.ENTITY_GENERIC_EXPLODE,
-				SoundCategory.BLOCKS, 4.0F,
-				(1.0F + (this.world.rand.nextFloat() - this.world.rand.nextFloat()) * 0.2F) * 0.7F);
+		this.world.playSound((EntityPlayer) null, this.x, this.y, this.z, SoundEvents.ENTITY_GENERIC_EXPLODE, SoundCategory.BLOCKS, 4.0F, (1.0F + (this.world.rand.nextFloat() - this.world.rand.nextFloat()) * 0.2F) * 0.7F);
 
 		if (this.size >= 2.0F && this.damagesTerrain) {
 			this.world.spawnParticle(EnumParticleTypes.EXPLOSION_HUGE, this.x, this.y, this.z, 1.0D, 0.0D, 0.0D);
@@ -223,15 +211,13 @@ public class BigExplosion {
 					d3 = d3 * d7;
 					d4 = d4 * d7;
 					d5 = d5 * d7;
-					this.world.spawnParticle(EnumParticleTypes.EXPLOSION_NORMAL, (d0 + this.x) / 2.0D,
-							(d1 + this.y) / 2.0D, (d2 + this.z) / 2.0D, d3, d4, d5);
+					this.world.spawnParticle(EnumParticleTypes.EXPLOSION_NORMAL, (d0 + this.x) / 2.0D, (d1 + this.y) / 2.0D, (d2 + this.z) / 2.0D, d3, d4, d5);
 					this.world.spawnParticle(EnumParticleTypes.SMOKE_NORMAL, d0, d1, d2, d3, d4, d5);
 				}
 
 				if (iblockstate.getMaterial() != Material.AIR) {
 					if (block.canDropFromExplosion(fakeExposion)) {
-						block.dropBlockAsItemWithChance(this.world, blockpos, this.world.getBlockState(blockpos),
-								1.0F / this.size, 0);
+						block.dropBlockAsItemWithChance(this.world, blockpos, this.world.getBlockState(blockpos), 1.0F / this.size, 0);
 					}
 
 					block.onBlockExploded(this.world, blockpos, fakeExposion);
@@ -241,8 +227,7 @@ public class BigExplosion {
 
 		if (this.causesFire) {
 			for (BlockPos blockpos1 : this.affectedBlockPositions) {
-				if (this.world.getBlockState(blockpos1).getMaterial() == Material.AIR
-						&& this.world.getBlockState(blockpos1.down()).isFullBlock() && this.random.nextInt(3) == 0) {
+				if (this.world.getBlockState(blockpos1).getMaterial() == Material.AIR && this.world.getBlockState(blockpos1.down()).isFullBlock() && this.random.nextInt(3) == 0) {
 					this.world.setBlockState(blockpos1, Blocks.FIRE.getDefaultState());
 				}
 			}
