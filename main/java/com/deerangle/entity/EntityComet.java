@@ -8,6 +8,7 @@ public class EntityComet extends Entity {
 
 	public EntityComet(World worldIn) {
 		super(worldIn);
+		this.setSize(1, 1);
 	}
 
 	@Override
@@ -26,5 +27,5 @@ public class EntityComet extends Entity {
 		// TODO Auto-generated method stub
 
 	}
-
+	
 }

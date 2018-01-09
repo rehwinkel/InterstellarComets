@@ -17,7 +17,7 @@ import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 public class InterstellarComets {
 	public static final String NAME = "Interstellar Comets";
 	public static final String MODID = "interstellarcomets";
-	public static final String VERSION = "1.0.0";
+	public static final String VERSION = "1.12.2-1.0.1.18";
 
 	@Instance
 	public static InterstellarComets instance;
@@ -30,6 +30,7 @@ public class InterstellarComets {
 		ModItems.load();
 		ModBlocks.load();
 		ModEntities.load();
+		proxy.preinit(event);
 	}
 
 	@EventHandler
