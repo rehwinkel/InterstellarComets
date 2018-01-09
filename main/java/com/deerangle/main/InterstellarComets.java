@@ -27,9 +27,6 @@ public class InterstellarComets {
 	
 	@EventHandler
 	public void preinit(FMLPreInitializationEvent event) {
-		ModItems.load();
-		ModBlocks.load();
-		ModEntities.load();
 		proxy.preinit(event);
 	}
 

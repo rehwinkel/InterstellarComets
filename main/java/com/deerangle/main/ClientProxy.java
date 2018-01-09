@@ -17,6 +17,7 @@ public class ClientProxy extends CommonProxy {
 	@Override
 	public void preinit(FMLPreInitializationEvent event) {
 		super.preinit(event);
+		System.out.println("Calling ClientProxy preinit!");
 		RenderingRegistry.registerEntityRenderingHandler(EntityComet.class, new RenderCometFactory());
 	}
 	
