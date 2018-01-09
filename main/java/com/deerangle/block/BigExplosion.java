@@ -84,7 +84,7 @@ public class BigExplosion {
 	 */
 	public void doExplosionA() {
 		Set<BlockPos> set = Sets.<BlockPos>newHashSet();
-		int i = 64;
+		int i = (int) (size * 4);
 
 		for (int j = 0; j < i; ++j) {
 			for (int k = 0; k < i; ++k) {
