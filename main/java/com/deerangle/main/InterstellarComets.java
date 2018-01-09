@@ -1,6 +1,7 @@
 package com.deerangle.main;
 
 import com.deerangle.block.ModBlocks;
+import com.deerangle.entity.ModEntities;
 import com.deerangle.item.ModItems;
 
 import net.minecraft.init.Blocks;
@@ -28,6 +29,7 @@ public class InterstellarComets {
 	public void preinit(FMLPreInitializationEvent event) {
 		ModItems.load();
 		ModBlocks.load();
+		ModEntities.load();
 	}
 
 	@EventHandler
