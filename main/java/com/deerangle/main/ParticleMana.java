@@ -25,12 +25,14 @@ public class ParticleMana extends Particle {
 		this.setParticleTexture(sprite);
 		
         this.destination = new Vector3f((float) destX, (float) destY, (float) destZ);
+        this.motionY = 0.7;
+        
         float f = 1;
         this.particleRed = f;
         this.particleGreen = f;
         this.particleBlue = f;
         this.particleScale = 1;
-        this.particleMaxAge = 20;
+        this.particleMaxAge = 2000;
 	}
 
 	@Override
@@ -38,22 +40,34 @@ public class ParticleMana extends Particle {
 		this.prevPosX = this.posX;
 		this.prevPosY = this.posY;
 		this.prevPosZ = this.posZ;
-		
-		//System.out.println("phwijphrw");
 		this.position = new Vector3f((float) posX, (float) posY, (float) posZ);
+		
 		Vector3f dir = new Vector3f();
 		Vector3f.sub(destination, position, dir);
-		dir.normalise();
-		
-		this.motionX = (double) dir.getX();
-        this.motionY = (double) dir.getY();
-        this.motionZ = (double) dir.getZ();
+		if(dir.length() > 0){
+			dir.normalise();
+		}
+		this.motionX = (this.motionX + (double) dir.getX() * 0.2)/2;
+        this.motionY = (this.motionY +(double) dir.getY() * 0.2)/2;
+        this.motionZ = (this.motionZ +(double) dir.getZ() * 0.2)/2;
 
 		this.posX += this.motionX;
 		this.posY += this.motionY;
 		this.posZ += this.motionZ;
+
+		endLife();
 	}
 	
+	private void endLife() {
+		this.position = new Vector3f((float) posX, (float) posY, (float) posZ);
+		Vector3f dir = new Vector3f();
+		Vector3f.sub(destination, position, dir);
+		
+		if(dir.length() < 0.15){
+			this.setExpired();
+		}
+	}
+
 	@Override
 	public int getFXLayer() {
 		return 1;
