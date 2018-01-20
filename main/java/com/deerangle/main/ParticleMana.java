@@ -20,12 +20,19 @@ public class ParticleMana extends Particle {
 	}
 	
 	public ParticleMana(World world, double startX, double startY, double startZ, double destX, double destY, double destZ) {
+		this(world, startX, startY, startZ, destX, destY, destZ, 0, 0, 0);
+	}
+
+	public ParticleMana(World world, double startX, double startY, double startZ, double destX, double destY, double destZ, double velX, double velY, double velZ) {
 		super(world, startX, startY, startZ, 0, 0, 0);
 		TextureAtlasSprite sprite = Minecraft.getMinecraft().getTextureMapBlocks().getAtlasSprite(texture.toString());
 		this.setParticleTexture(sprite);
 		
         this.destination = new Vector3f((float) destX, (float) destY, (float) destZ);
-        this.motionY = 0.7;
+        
+        this.motionX = velX;
+        this.motionY = velY;
+        this.motionZ = velZ;
         
         float f = 1;
         this.particleRed = f;
