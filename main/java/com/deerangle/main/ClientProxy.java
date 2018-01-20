@@ -1,11 +1,15 @@
 package com.deerangle.main;
 
-import com.deerangle.entity.RenderCometFactory;
+import com.deerangle.block.TileEntityPedestal;
+import com.deerangle.block.TileEntityPedestalRenderer;
 import com.deerangle.entity.EntityComet;
+import com.deerangle.entity.RenderComet;
 
+import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.EntityRenderer;
 import net.minecraft.entity.monster.EntityCreeper;
 import net.minecraft.entity.passive.EntityCow;
+import net.minecraftforge.fml.client.registry.ClientRegistry;
 import net.minecraftforge.fml.client.registry.IRenderFactory;
 import net.minecraftforge.fml.client.registry.RenderingRegistry;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
@@ -18,7 +22,8 @@ public class ClientProxy extends CommonProxy {
 	public void preinit(FMLPreInitializationEvent event) {
 		super.preinit(event);
 		System.out.println("Calling ClientProxy preinit!");
-		RenderingRegistry.registerEntityRenderingHandler(EntityComet.class, new RenderCometFactory());
+		RenderingRegistry.registerEntityRenderingHandler(EntityComet.class, RenderComet::new);
+		ClientRegistry.bindTileEntitySpecialRenderer(TileEntityPedestal.class, new TileEntityPedestalRenderer());
 	}
 	
 	@Override

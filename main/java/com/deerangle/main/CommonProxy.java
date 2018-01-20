@@ -1,7 +1,7 @@
 package com.deerangle.main;
 
 import com.deerangle.block.ModBlocks;
-import com.deerangle.block.TileEntityPedastal;
+import com.deerangle.block.TileEntityPedestal;
 import com.deerangle.entity.ModEntities;
 import com.deerangle.item.ModItems;
 
@@ -17,7 +17,7 @@ public class CommonProxy {
 		ModItems.load();
 		ModBlocks.load();
 		ModEntities.load();
-		GameRegistry.registerTileEntity(TileEntityPedastal.class, "pedastal");
+		GameRegistry.registerTileEntity(TileEntityPedestal.class, "pedastal");
 	}
 
 	public void init(FMLInitializationEvent event) {

@@ -1,0 +1,5 @@
+{
+    "variants": {
+        "normal": { "model": "interstellarcomets:block_comet" }
+    }
+}

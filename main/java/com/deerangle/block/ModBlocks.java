@@ -1,8 +1,7 @@
 package com.deerangle.block;
 
-import java.util.ArrayList;
+import java.util.ArrayList; 
 
-import com.deerangle.block.item.ItemBlockShit;
 import com.deerangle.item.ModItems;
 import com.deerangle.main.InterstellarComets;
 import com.deerangle.main.ModTabs;
@@ -20,20 +19,14 @@ import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.registries.IForgeRegistry;
 
 public class ModBlocks {
-
-	public static Block shit2;
-	public static Block test;
 	
-	public static Block pedastal;
+	public static Block pedestal;
 	public static Block block_comet;
 	
 	private static final ModBlocks instance = new ModBlocks();
 	
 	public static void load(){
-		shit2 = new BlockBase(Material.CACTUS).setRegistryName("shit2").setUnlocalizedName("shit2").setCreativeTab(ModTabs.tab_main);
-		test = new BlockTest(Material.TNT).setRegistryName("test").setUnlocalizedName("test").setCreativeTab(ModTabs.tab_main);
-		
-		pedastal = new BlockPedastal();
+		pedestal = new BlockPedestal();
 		block_comet = new BlockComet();
 		
 		MinecraftForge.EVENT_BUS.register(instance);
@@ -42,11 +35,8 @@ public class ModBlocks {
 	@SubscribeEvent
 	public void registerBlock(RegistryEvent.Register<Block> event){
 		IForgeRegistry<Block> registry = event.getRegistry();
-		
-		register(registry, shit2, new ItemBlockShit(shit2));
-		register(registry, test);
 
-		register(registry, pedastal);
+		register(registry, pedestal);
 		register(registry, block_comet);
 	}
 	
@@ -74,7 +64,8 @@ public class ModBlocks {
 	
 	@SubscribeEvent
 	public void registerModel(ModelRegistryEvent event){
-		ModelLoader.setCustomModelResourceLocation(Item.getItemFromBlock(shit2), 0, new ModelResourceLocation(InterstellarComets.MODID + ":shit2", "inventory"));
+		ModelLoader.setCustomModelResourceLocation(Item.getItemFromBlock(pedestal), 0, new ModelResourceLocation(InterstellarComets.MODID + ":pedestal", "inventory"));
+		ModelLoader.setCustomModelResourceLocation(Item.getItemFromBlock(block_comet), 0, new ModelResourceLocation(InterstellarComets.MODID + ":block_comet", "inventory"));
 	}
 
 }

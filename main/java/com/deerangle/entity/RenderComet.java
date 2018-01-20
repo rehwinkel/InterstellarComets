@@ -8,19 +8,15 @@ import net.minecraft.util.ResourceLocation;
 
 public class RenderComet extends Render<EntityComet> {
 
-	protected RenderComet(RenderManager renderManager) {
+	public RenderComet(RenderManager renderManager) {
 		super(renderManager);
+		System.out.println("Initializing RenderComet!");
 	}
 
 	@Override
 	public void doRender(EntityComet entity, double x, double y, double z, float entityYaw, float partialTicks) {
 		super.doRender(entity, x, y, z, entityYaw, partialTicks);
 		System.out.println("Am i rendering?");
-	}
-	
-	@Override
-	public RenderManager getRenderManager() {
-		return super.getRenderManager();
 	}
 	
 	@Override
