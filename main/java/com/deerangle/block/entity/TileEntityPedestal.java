@@ -1,14 +1,17 @@
-package com.deerangle.block;
+package com.deerangle.block.entity;
 
 import javax.swing.plaf.basic.BasicComboBoxUI.ItemHandler;
 
 import com.deerangle.main.InterstellarComets;
+import com.deerangle.main.ParticleMana;
 import com.deerangle.network.PacketRequestUpdatePedestal;
 import com.deerangle.network.PacketUpdatePedestal;
 
+import net.minecraft.client.Minecraft;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;
+import net.minecraft.util.EnumParticleTypes;
 import net.minecraft.util.ITickable;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.common.capabilities.ICapabilityProvider;
@@ -39,7 +42,8 @@ public class TileEntityPedestal extends TileEntity implements ITickable, ICapabi
 
 	@Override
 	public void update() {
-
+		//world.spawnParticle(EnumParticleTypes.CLOUD, getPos().getX(), getPos().getY(), getPos().getZ(), 0, 1, 0);
+		Minecraft.getMinecraft().effectRenderer.addEffect(new ParticleMana(world, getPos().getX(), getPos().getY(), getPos().getZ()));
 	}
 
 	@Override

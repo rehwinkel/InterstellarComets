@@ -1,5 +1,6 @@
 package com.deerangle.entity;
 
+import net.minecraft.client.renderer.entity.RenderEntityItem;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.nbt.NBTTagCompound;

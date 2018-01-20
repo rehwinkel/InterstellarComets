@@ -1,5 +1,6 @@
 package com.deerangle.block;
 
+import com.deerangle.block.entity.TileEntityPedestal;
 import com.deerangle.item.ModItems;
 import com.deerangle.main.InterstellarComets;
 import com.deerangle.main.InterstellarCometsUtil;

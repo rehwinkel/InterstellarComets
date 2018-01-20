@@ -1,7 +1,7 @@
 package com.deerangle.main;
 
 import com.deerangle.block.ModBlocks;
-import com.deerangle.block.TileEntityPedestal;
+import com.deerangle.block.entity.TileEntityPedestal;
 import com.deerangle.entity.ModEntities;
 import com.deerangle.item.ModItems;
 

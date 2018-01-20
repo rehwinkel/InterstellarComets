@@ -1,6 +1,6 @@
 package com.deerangle.network;
 
-import com.deerangle.block.TileEntityPedestal;
+import com.deerangle.block.entity.TileEntityPedestal;
 
 import io.netty.buffer.ByteBuf;
 import net.minecraft.client.Minecraft;

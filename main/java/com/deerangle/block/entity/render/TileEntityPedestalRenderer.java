@@ -1,6 +1,8 @@
-package com.deerangle.block;
+package com.deerangle.block.entity.render;
 
 import org.lwjgl.opengl.GL11;
+
+import com.deerangle.block.entity.TileEntityPedestal;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockBush;

@@ -4,6 +4,7 @@ import com.deerangle.item.ModItems;
 import com.deerangle.main.InterstellarComets;
 import com.deerangle.main.ModTabs;
 
+import net.minecraft.client.renderer.entity.RenderCow;
 import net.minecraft.item.Item;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.RegistryEvent;
@@ -13,11 +14,12 @@ import net.minecraftforge.registries.IForgeRegistry;
 
 public class ModEntities {
 
-	private EntityEntry ENTITY_COMET = new EntityEntry(EntityComet.class, InterstellarComets.MODID + ":" + "comet").setRegistryName("comet");
+	public static EntityEntry ENTITY_COMET;
 
 	private static final ModEntities instance = new ModEntities();
 	
 	public static void load(){
+		ENTITY_COMET = new EntityEntry(EntityComet.class, InterstellarComets.MODID + ":" + "comet").setRegistryName("comet");
 		MinecraftForge.EVENT_BUS.register(instance);
 	}
 	

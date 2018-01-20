@@ -1,7 +1,7 @@
 package com.deerangle.main;
 
-import com.deerangle.block.TileEntityPedestal;
-import com.deerangle.block.TileEntityPedestalRenderer;
+import com.deerangle.block.entity.TileEntityPedestal;
+import com.deerangle.block.entity.render.TileEntityPedestalRenderer;
 import com.deerangle.entity.EntityComet;
 import com.deerangle.entity.RenderComet;
 
