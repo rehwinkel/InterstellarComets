@@ -16,12 +16,11 @@ import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 
-public class ClientProxy extends CommonProxy {
+public class ClientProxy extends ServerProxy {
 	
 	@Override
 	public void preinit(FMLPreInitializationEvent event) {
 		super.preinit(event);
-		System.out.println("Calling ClientProxy preinit!");
 		RenderingRegistry.registerEntityRenderingHandler(EntityComet.class, RenderComet::new);
 		ClientRegistry.bindTileEntitySpecialRenderer(TileEntityPedestal.class, new TileEntityPedestalRenderer());
 	}

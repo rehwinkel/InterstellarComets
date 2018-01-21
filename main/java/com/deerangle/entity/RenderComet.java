@@ -13,18 +13,11 @@ public class RenderComet extends Render<EntityComet> {
 
 	public RenderComet(RenderManager renderManager) {
 		super(renderManager);
-		System.out.println("Initializing RenderComet!");
 	}
 
 	@Override
 	public void doRender(EntityComet entity, double x, double y, double z, float entityYaw, float partialTicks) {
 		super.doRender(entity, x, y, z, entityYaw, partialTicks);
-		System.out.println("Am i rendering?");
-	}
-	
-	@Override
-	public boolean shouldRender(EntityComet livingEntity, ICamera camera, double camX, double camY, double camZ) {
-		return true;
 	}
 	
 	@Override

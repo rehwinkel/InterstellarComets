@@ -1,6 +1,7 @@
 package com.deerangle.main;
 
 import com.deerangle.block.ModBlocks;
+import com.deerangle.block.entity.TileEntityPedestal;
 import com.deerangle.entity.ModEntities;
 import com.deerangle.item.ModItems;
 import com.deerangle.network.PacketRequestUpdatePedestal;
@@ -16,6 +17,7 @@ import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.fml.common.network.NetworkRegistry;
 import net.minecraftforge.fml.common.network.simpleimpl.SimpleNetworkWrapper;
+import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.fml.relauncher.Side;
 
 @Mod(name = InterstellarComets.NAME, modid = InterstellarComets.MODID, version = InterstellarComets.VERSION)
@@ -27,13 +29,17 @@ public class InterstellarComets {
 	@Instance
 	public static InterstellarComets instance;
 	
-	@SidedProxy(clientSide = "com.deerangle.main.ClientProxy", serverSide = "com.deerangle.main.CommonProxy")
-	public static CommonProxy proxy;
+	@SidedProxy(clientSide = "com.deerangle.main.ClientProxy", serverSide = "com.deerangle.main.ServerProxy")
+	public static ServerProxy proxy;
 	
 	public static SimpleNetworkWrapper wrapper;
 	
 	@EventHandler
 	public void preinit(FMLPreInitializationEvent event) {
+		ModItems.load();
+		ModBlocks.load();
+		ModEntities.load();
+		GameRegistry.registerTileEntity(TileEntityPedestal.class, "pedastal");
 		proxy.preinit(event);
 		
 		wrapper = NetworkRegistry.INSTANCE.newSimpleChannel(MODID);

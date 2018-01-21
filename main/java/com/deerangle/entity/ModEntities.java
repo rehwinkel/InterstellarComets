@@ -10,6 +10,7 @@ import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.registry.EntityEntry;
+import net.minecraftforge.fml.common.registry.EntityEntryBuilder;
 import net.minecraftforge.registries.IForgeRegistry;
 
 public class ModEntities {
@@ -19,7 +20,7 @@ public class ModEntities {
 	private static final ModEntities instance = new ModEntities();
 	
 	public static void load(){
-		ENTITY_COMET = new EntityEntry(EntityComet.class, InterstellarComets.MODID + ":" + "comet").setRegistryName("comet");
+		ENTITY_COMET = EntityEntryBuilder.create().entity(EntityComet.class).id(InterstellarComets.MODID + ":" + "comet", 0).name("comet").tracker(64, 20, false).build();//new EntityEntry(EntityComet.class, InterstellarComets.MODID + ":" + "comet").setRegistryName(InterstellarComets.MODID + ":" + "comet");
 		MinecraftForge.EVENT_BUS.register(instance);
 	}
 	

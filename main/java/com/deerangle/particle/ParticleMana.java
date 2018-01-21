@@ -77,11 +77,7 @@ public class ParticleMana extends Particle {
 
 	private void updateAlpha() {
 		float deWey = Vector3f.sub(destination, start, null).length();
-		if(deWey == 1){
-			System.out.println(0);
-		}else{
-			System.out.println(deWey);
-		}
+		//System.out.println(deWey);
 	}
 
 	private void endLife() {
