@@ -3,9 +3,9 @@ package com.deerangle.block.entity;
 import javax.swing.plaf.basic.BasicComboBoxUI.ItemHandler;
 
 import com.deerangle.main.InterstellarComets;
-import com.deerangle.main.ParticleMana;
 import com.deerangle.network.PacketRequestUpdatePedestal;
 import com.deerangle.network.PacketUpdatePedestal;
+import com.deerangle.particle.ParticleMana;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.nbt.NBTTagCompound;

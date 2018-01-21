@@ -1,7 +1,9 @@
-package com.deerangle.main;
+package com.deerangle.particle;
 
 import org.lwjgl.opengl.GL11;
 import org.lwjgl.util.vector.Vector3f;
+
+import com.deerangle.main.InterstellarComets;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.particle.Particle;
