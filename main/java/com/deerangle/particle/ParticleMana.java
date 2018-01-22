@@ -49,6 +49,9 @@ public class ParticleMana extends Particle {
 		this.particleBlue = f;
 		this.particleScale = 1;
 		this.particleMaxAge = 2000;
+
+		this.position = new Vector3f((float) posX, (float) posY, (float) posZ);
+		updateAlpha();
 	}
 
 	@Override
@@ -77,7 +80,10 @@ public class ParticleMana extends Particle {
 
 	private void updateAlpha() {
 		float deWey = Vector3f.sub(destination, start, null).length();
-		//System.out.println(deWey);
+		float currentWey = Vector3f.sub(destination, position, null).length();
+		if(currentWey <= 1){
+			this.setAlphaF((currentWey / 1F) * 0.9F);
+		}
 	}
 
 	private void endLife() {
@@ -93,7 +99,7 @@ public class ParticleMana extends Particle {
 	@Override
 	public void renderParticle(BufferBuilder buffer, Entity entityIn, float partialTicks, float rotationX, float rotationZ, float rotationYZ, float rotationXY, float rotationXZ) {
 		GlStateManager.enableBlend();
-		GlStateManager.alphaFunc(GL11.GL_GREATER, 0.2F);
+		//GlStateManager.alphaFunc(GL11.GL_GREATER, 0.2F);
 		float f4 = 0.1F * this.particleScale;
 		float f5 = (float) (this.prevPosX + (this.posX - this.prevPosX) * (double) partialTicks - interpPosX);
 		float f6 = (float) (this.prevPosY + (this.posY - this.prevPosY) * (double) partialTicks - interpPosY);
