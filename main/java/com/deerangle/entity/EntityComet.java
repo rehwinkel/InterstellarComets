@@ -15,7 +15,7 @@ public class EntityComet extends Entity {
 
 	public EntityComet(World worldIn) {
 		super(worldIn);
-		this.setSize(1, 1);
+		this.setSize(0.8F, 0.8F);
 	}
 	
 	@Override
@@ -26,7 +26,6 @@ public class EntityComet extends Entity {
 	@Override
 	public void onUpdate() {
 		super.onUpdate();
-		//System.out.println(getPosition());
 	}
 
 	@Override
