@@ -20,7 +20,7 @@ public class ModEntities {
 	private static final ModEntities instance = new ModEntities();
 	
 	public static void load(){
-		ENTITY_COMET = EntityEntryBuilder.create().entity(EntityComet.class).id(InterstellarComets.MODID + ":" + "comet", 0).name("comet").tracker(64, 20, false).build();//new EntityEntry(EntityComet.class, InterstellarComets.MODID + ":" + "comet").setRegistryName(InterstellarComets.MODID + ":" + "comet");
+		ENTITY_COMET = EntityEntryBuilder.create().entity(EntityComet.class).id(InterstellarComets.MODID + ":" + "comet", 0).name("comet").tracker(80, 1, true).build();//new EntityEntry(EntityComet.class, InterstellarComets.MODID + ":" + "comet").setRegistryName(InterstellarComets.MODID + ":" + "comet");
 		MinecraftForge.EVENT_BUS.register(instance);
 	}
 	
