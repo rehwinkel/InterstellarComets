@@ -6,7 +6,9 @@ import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.EntityTracker;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.projectile.EntityThrowable;
+import net.minecraft.init.Blocks;
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.util.EnumParticleTypes;
 import net.minecraft.world.World;
 
 public class EntityComet extends Entity {
@@ -29,8 +31,19 @@ public class EntityComet extends Entity {
 	@Override
 	public void onEntityUpdate() {
 		super.onEntityUpdate();
+		
+		for(double f = 0; f < Math.abs(this.motionY); f+= 0.1){
+			double rnda = (Math.random() - 0.5) * 0.5;
+			double rndb = (Math.random() - 0.5) * 0.5;
+			world.spawnParticle(EnumParticleTypes.FLAME, this.posX + rnda, this.posY + 0.5 + f, this.posZ + rndb, 0, 0.2, 0);
+			for(int i = 0; i < 3; i++){
+				rnda = (Math.random() - 0.5) * 0.5;
+				rndb = (Math.random() - 0.5) * 0.5;
+				world.spawnParticle(EnumParticleTypes.SMOKE_LARGE, this.posX + rnda, this.posY + 0.5 + f, this.posZ + rndb, 0, 0, 0);
+			}
+		}
 	}
-
+	
 	@Override
 	public void onUpdate() {
 		super.onUpdate();
@@ -42,13 +55,18 @@ public class EntityComet extends Entity {
 		this.posY += this.motionY;
 		this.posZ += this.motionZ;
 
-		if (this.posY <= 68) {
-			this.posY = 68;
-		}else{
-			this.motionY -= getGravityVelocity();
+		this.motionY -= getGravityVelocity();
+		
+		if(world.getBlockState(this.getPosition()) != Blocks.AIR.getDefaultState()){
+			onImpact();
 		}
 	}
 
+	public void onImpact() {
+		this.setDead();
+		world.createExplosion(this, posX, world.getHeight((int) posX, (int) posZ), posZ, 3, true);
+	}
+	
 	protected float getGravityVelocity() {
 		return 0.03F;
 	}
