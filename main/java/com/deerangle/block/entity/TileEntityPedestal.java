@@ -46,9 +46,9 @@ public class TileEntityPedestal extends TileEntity implements ITickable, ICapabi
 		double startY = getPos().getY() + 0.6;
 		double startZ = getPos().getZ() + 0.5 + (world.rand.nextDouble() - 0.5) * 0.4;
 		double destX = 87.5;
-		double destY = 75;
+		double destY = 74.3;
 		double destZ = 197.5;
-		ParticleMana particle = new ParticleMana(world, startX, startY, startZ, destX, destY, destZ, 0, 0.7, 0);
+		ParticleMana particle = new ParticleMana(world, startX, startY, startZ, destX, destY, destZ, 0, 1.2, 0);
 		Minecraft.getMinecraft().effectRenderer.addEffect(particle);
 	}
 

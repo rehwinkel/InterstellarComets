@@ -36,11 +36,9 @@ public class EntityComet extends Entity {
 			double rnda = (Math.random() - 0.5) * 0.5;
 			double rndb = (Math.random() - 0.5) * 0.5;
 			world.spawnParticle(EnumParticleTypes.FLAME, this.posX + rnda, this.posY + 0.5 + f, this.posZ + rndb, 0, 0.2, 0);
-			for(int i = 0; i < 3; i++){
-				rnda = (Math.random() - 0.5) * 0.5;
-				rndb = (Math.random() - 0.5) * 0.5;
-				world.spawnParticle(EnumParticleTypes.SMOKE_LARGE, this.posX + rnda, this.posY + 0.5 + f, this.posZ + rndb, 0, 0, 0);
-			}
+			rnda = (Math.random() - 0.5) * 0.5;
+			rndb = (Math.random() - 0.5) * 0.5;
+			world.spawnParticle(EnumParticleTypes.SMOKE_LARGE, this.posX + rnda, this.posY + 0.5 + f, this.posZ + rndb, 0, 0, 0);
 		}
 	}
 	

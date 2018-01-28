@@ -19,8 +19,9 @@ import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.registries.IForgeRegistry;
 
 public class ModBlocks {
-	
+
 	public static Block pedestal;
+	public static Block mana_concentrator;
 	public static Block block_comet;
 	
 	private static final ModBlocks instance = new ModBlocks();
@@ -28,6 +29,7 @@ public class ModBlocks {
 	public static void load(){
 		pedestal = new BlockPedestal();
 		block_comet = new BlockComet();
+		mana_concentrator = new BlockManaConcentrator();
 		
 		MinecraftForge.EVENT_BUS.register(instance);
 	}
@@ -38,6 +40,7 @@ public class ModBlocks {
 
 		register(registry, pedestal);
 		register(registry, block_comet);
+		register(registry, mana_concentrator);
 	}
 	
 	private void register(IForgeRegistry<Block> registry, Block block) {
@@ -66,6 +69,7 @@ public class ModBlocks {
 	public void registerModel(ModelRegistryEvent event){
 		ModelLoader.setCustomModelResourceLocation(Item.getItemFromBlock(pedestal), 0, new ModelResourceLocation(InterstellarComets.MODID + ":pedestal", "inventory"));
 		ModelLoader.setCustomModelResourceLocation(Item.getItemFromBlock(block_comet), 0, new ModelResourceLocation(InterstellarComets.MODID + ":block_comet", "inventory"));
+		ModelLoader.setCustomModelResourceLocation(Item.getItemFromBlock(mana_concentrator), 0, new ModelResourceLocation(InterstellarComets.MODID + ":mana_concentrator", "inventory"));
 	}
 
 }
