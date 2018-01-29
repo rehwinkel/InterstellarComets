@@ -15,11 +15,13 @@ import net.minecraftforge.registries.IForgeRegistry;
 public class ModItems {
 	
 	public static Item shit;
+	public static Item concentrated_mana_crystal;
 	
 	private static final ModItems instance = new ModItems();
 	
 	public static void load(){
 		shit = new Item().setRegistryName("shit").setUnlocalizedName("shit").setCreativeTab(ModTabs.tab_main);
+		concentrated_mana_crystal = new ItemConcentratedManaCrystal();
 		
 		MinecraftForge.EVENT_BUS.register(instance);
 	}
@@ -29,11 +31,13 @@ public class ModItems {
 		IForgeRegistry<Item> registry = event.getRegistry();
 		
 		//registry.register(shit);
+		registry.register(concentrated_mana_crystal);
 	}
 	
 	@SubscribeEvent
 	public void registerModel(ModelRegistryEvent event){
 		ModelLoader.setCustomModelResourceLocation(shit, 0, new ModelResourceLocation(InterstellarComets.MODID + ":shit", "inventory"));
+		ModelLoader.setCustomModelResourceLocation(concentrated_mana_crystal, 0, new ModelResourceLocation(InterstellarComets.MODID + ":concentrated_mana_crystal", "inventory"));
 	}
 	
 }
