@@ -1,0 +1,30 @@
+{
+    "parent": "interstellarcomets:block/mana_concentrator_full",
+	"display": {
+        "thirdperson_righthand": {
+            "rotation": [ 30, 160, 0 ],
+            "translation": [ 0, 0, 0],
+            "scale":[ 0.23, 0.23, 0.23]
+        },
+        "firstperson_righthand": {
+            "rotation": [ 0, 0, 0 ],
+            "translation": [ 1.13, 0.2, 1.13],
+            "scale": [ 0.58, 0.58, 0.58 ]
+        },
+        "fixed": {
+            "rotation": [ 0, 0, 0 ],
+            "translation": [ 0, 0, 1 ],
+            "scale":[ 0.5, 0.5, 0.5]
+        },
+		"gui": {
+            "rotation": [ 30, 135, 0 ],
+            "translation": [ 0, -0.5, 0],
+            "scale":[ 0.5, 0.5, 0.5 ]
+        },
+        "head": {
+            "rotation": [ 0, 180, 0 ],
+            "translation": [ 0, 14, 0],
+            "scale":[ 1,1,1 ]
+        }
+    }
+}

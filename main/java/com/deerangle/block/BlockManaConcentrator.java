@@ -1,12 +1,19 @@
 package com.deerangle.block;
 
+import java.util.List;
+
 import com.deerangle.block.entity.TileEntityManaConcentrator;
 import com.deerangle.main.ModTabs;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
+import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
+import net.minecraft.util.NonNullList;
+import net.minecraft.util.math.AxisAlignedBB;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 
 public class BlockManaConcentrator extends Block {
@@ -15,9 +22,39 @@ public class BlockManaConcentrator extends Block {
 		super(Material.ROCK);
 		this.setRegistryName("mana_concentrator");
 		this.setUnlocalizedName("mana_concentrator");
-		this.setCreativeTab(ModTabs.tab_main);
 		this.setHarvestLevel("pickaxe", 0);
 		this.setHardness(1.5F);
+	}
+	
+	@Override
+	public void breakBlock(World worldIn, BlockPos pos, IBlockState state) {
+		worldIn.setBlockToAir(pos.add(0, -1, 0));
+		super.breakBlock(worldIn, pos, state);
+	}
+	
+	@Override
+	public void getDrops(NonNullList<ItemStack> drops, IBlockAccess world, BlockPos pos, IBlockState state, int fortune) {
+		drops.add(new ItemStack(ModBlocks.mana_concentrator_base));
+	}
+	
+	@Override
+	public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess source, BlockPos pos) {
+		return new AxisAlignedBB(0.125, 0.0, 0.125, 0.875, 0.375, 0.875);
+	}
+	
+	@Override
+	public boolean isOpaqueCube(IBlockState state) {
+		return false;
+	}
+	
+	@Override
+	public boolean isFullBlock(IBlockState state) {
+		return this.isOpaqueCube(state);
+	}
+	
+	@Override
+	public boolean isFullCube(IBlockState state) {
+		return this.isFullBlock(state);
 	}
 	
 	@Override

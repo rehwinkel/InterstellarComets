@@ -22,6 +22,7 @@ public class ModBlocks {
 
 	public static Block pedestal;
 	public static Block mana_concentrator;
+	public static Block mana_concentrator_base;
 	public static Block block_comet;
 	
 	private static final ModBlocks instance = new ModBlocks();
@@ -30,6 +31,7 @@ public class ModBlocks {
 		pedestal = new BlockPedestal();
 		block_comet = new BlockComet();
 		mana_concentrator = new BlockManaConcentrator();
+		mana_concentrator_base = new BlockManaConcentratorBase();
 		
 		MinecraftForge.EVENT_BUS.register(instance);
 	}
@@ -40,18 +42,21 @@ public class ModBlocks {
 
 		register(registry, pedestal);
 		register(registry, block_comet);
-		register(registry, mana_concentrator);
+		register(registry, mana_concentrator, null);
+		register(registry, mana_concentrator_base);
 	}
 	
 	private void register(IForgeRegistry<Block> registry, Block block) {
-		register(registry, block, new ItemBlock(block));
+		ItemBlock item = new ItemBlock(block);
+		item.setRegistryName(block.getRegistryName());
+		register(registry, block, item);
 	}
 
-	private void register(IForgeRegistry<Block> registry, Block block, ItemBlock shit) {
+	private void register(IForgeRegistry<Block> registry, Block block, ItemBlock item) {
+		if(item != null){
+			ITEM_BLOCKS.add(item);
+		}
 		registry.register(block);
-		ItemBlock ib = new ItemBlock(block);
-		ib.setRegistryName(block.getRegistryName());
-		ITEM_BLOCKS.add(ib);
 	}
 
 	private ArrayList<ItemBlock> ITEM_BLOCKS = new ArrayList<ItemBlock>();
@@ -69,7 +74,7 @@ public class ModBlocks {
 	public void registerModel(ModelRegistryEvent event){
 		ModelLoader.setCustomModelResourceLocation(Item.getItemFromBlock(pedestal), 0, new ModelResourceLocation(InterstellarComets.MODID + ":pedestal", "inventory"));
 		ModelLoader.setCustomModelResourceLocation(Item.getItemFromBlock(block_comet), 0, new ModelResourceLocation(InterstellarComets.MODID + ":block_comet", "inventory"));
-		ModelLoader.setCustomModelResourceLocation(Item.getItemFromBlock(mana_concentrator), 0, new ModelResourceLocation(InterstellarComets.MODID + ":mana_concentrator", "inventory"));
+		ModelLoader.setCustomModelResourceLocation(Item.getItemFromBlock(mana_concentrator_base), 0, new ModelResourceLocation(InterstellarComets.MODID + ":mana_concentrator_full", "inventory"));
 	}
 
 }
