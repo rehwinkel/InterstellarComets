@@ -24,6 +24,7 @@ public class ModBlocks {
 	public static Block mana_concentrator;
 	public static Block mana_concentrator_base;
 	public static Block block_comet;
+	public static Block cometic_brick;
 	
 	private static final ModBlocks instance = new ModBlocks();
 	
@@ -32,6 +33,7 @@ public class ModBlocks {
 		block_comet = new BlockComet();
 		mana_concentrator = new BlockManaConcentrator();
 		mana_concentrator_base = new BlockManaConcentratorBase();
+		cometic_brick = new BlockCometicBrick();
 		
 		MinecraftForge.EVENT_BUS.register(instance);
 	}
@@ -44,14 +46,15 @@ public class ModBlocks {
 		register(registry, block_comet);
 		register(registry, mana_concentrator, null);
 		register(registry, mana_concentrator_base);
-	}
-	
-	private void register(IForgeRegistry<Block> registry, Block block) {
-		ItemBlock item = new ItemBlock(block);
-		item.setRegistryName(block.getRegistryName());
-		register(registry, block, item);
+		register(registry, cometic_brick, new ItemBlockCometicBrick(cometic_brick));
 	}
 
+	private void register(IForgeRegistry<Block> registry, Block block) {
+		ItemBlock ib = new ItemBlock(block);
+		ib.setRegistryName(block.getRegistryName());
+		register(registry, block, ib);
+	}
+	
 	private void register(IForgeRegistry<Block> registry, Block block, ItemBlock item) {
 		if(item != null){
 			ITEM_BLOCKS.add(item);
@@ -75,6 +78,9 @@ public class ModBlocks {
 		ModelLoader.setCustomModelResourceLocation(Item.getItemFromBlock(pedestal), 0, new ModelResourceLocation(InterstellarComets.MODID + ":pedestal", "inventory"));
 		ModelLoader.setCustomModelResourceLocation(Item.getItemFromBlock(block_comet), 0, new ModelResourceLocation(InterstellarComets.MODID + ":block_comet", "inventory"));
 		ModelLoader.setCustomModelResourceLocation(Item.getItemFromBlock(mana_concentrator_base), 0, new ModelResourceLocation(InterstellarComets.MODID + ":mana_concentrator_full", "inventory"));
+//		for(int i = 0; i < BlockCometicBrick.EnumType.values().length; i++){
+//			ModelLoader.setCustomModelResourceLocation(Item.getItemFromBlock(pedestal), 0, new ModelResourceLocation(InterstellarComets.MODID + ":pedestal", "inventory"));
+//		}
 	}
 
 }

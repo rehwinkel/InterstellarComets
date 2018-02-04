@@ -1,0 +1,9 @@
+{
+    "variants": {
+        "type=stone": { "model": "interstellarcomets:cometic_brick_stone" },
+        "type=brick": { "model": "interstellarcomets:cometic_brick_brick" },
+        "type=cobble": { "model": "interstellarcomets:cometic_brick_cobble" },
+        "type=cracked": { "model": "interstellarcomets:cometic_brick_cracked" },
+        "type=chiseled": { "model": "interstellarcomets:cometic_brick_chiseled" }
+    }
+}
