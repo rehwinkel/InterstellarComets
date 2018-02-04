@@ -1,4 +1,7 @@
-package com.deerangle.block.entity;
+package com.deerangle.network;
+
+import com.deerangle.block.entity.TileEntityManaConcentrator;
+import com.deerangle.block.entity.TileEntityPedestal;
 
 import io.netty.buffer.ByteBuf;
 import net.minecraft.client.Minecraft;

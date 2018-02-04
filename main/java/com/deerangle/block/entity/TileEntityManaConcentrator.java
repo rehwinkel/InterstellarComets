@@ -2,6 +2,7 @@ package com.deerangle.block.entity;
 
 import com.deerangle.block.ModBlocks;
 import com.deerangle.main.InterstellarComets;
+import com.deerangle.network.PacketOccupyPedastal;
 
 import net.minecraft.item.Item;
 import net.minecraft.tileentity.TileEntity;
@@ -64,6 +65,7 @@ public class TileEntityManaConcentrator extends TileEntity implements ITickable,
 				}
 			}
 		}
+		
 		isActive = pass;
 	}
 	

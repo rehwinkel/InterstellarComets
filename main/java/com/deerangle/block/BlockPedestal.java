@@ -1,11 +1,11 @@
 package com.deerangle.block;
 
-import com.deerangle.block.entity.PacketOccupyPedastal;
 import com.deerangle.block.entity.TileEntityPedestal;
 import com.deerangle.item.ModItems;
 import com.deerangle.main.InterstellarComets;
 import com.deerangle.main.InterstellarCometsUtil;
 import com.deerangle.main.ModTabs;
+import com.deerangle.network.PacketOccupyPedastal;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockStone;

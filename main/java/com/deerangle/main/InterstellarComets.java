@@ -1,11 +1,11 @@
 package com.deerangle.main;
 
 import com.deerangle.block.ModBlocks;
-import com.deerangle.block.entity.PacketOccupyPedastal;
 import com.deerangle.block.entity.TileEntityManaConcentrator;
 import com.deerangle.block.entity.TileEntityPedestal;
 import com.deerangle.entity.ModEntities;
 import com.deerangle.item.ModItems;
+import com.deerangle.network.PacketOccupyPedastal;
 import com.deerangle.network.PacketRequestUpdatePedestal;
 import com.deerangle.network.PacketUpdatePedestal;
 import com.deerangle.network.ServerProxy;
