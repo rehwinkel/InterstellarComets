@@ -1,4 +1,4 @@
-package com.deerangle.main;
+package com.deerangle.network;
 
 import com.deerangle.block.ModBlocks;
 import com.deerangle.block.entity.TileEntityPedestal;
@@ -22,6 +22,10 @@ public class ServerProxy {
 	}
 
 	public void postinit(FMLPostInitializationEvent event) {
+		
+	}
+
+	public void spawnParticle(double startX, double startY, double startZ, double destX, double destY, double destZ) {
 		
 	}
 	

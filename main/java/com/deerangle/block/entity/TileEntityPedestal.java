@@ -1,9 +1,10 @@
 package com.deerangle.block.entity;
 
-import com.deerangle.main.InterstellarComets; 
+import com.deerangle.main.InterstellarComets;
+import com.deerangle.network.ClientProxy;
 import com.deerangle.network.PacketRequestUpdatePedestal;
-import com.deerangle.network.PacketSpawnCustomParticle;
 import com.deerangle.network.PacketUpdatePedestal;
+import com.deerangle.particle.ParticleMana;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.nbt.NBTTagCompound;
@@ -44,15 +45,15 @@ public class TileEntityPedestal extends TileEntity implements ITickable, ICapabi
 	@Override
 	public void update() {
 		if(this.enabled){
-			double startX = getPos().getX() + 0.5 + (world.rand.nextDouble() - 0.5) * 0.4;
-			double startY = getPos().getY() + 0.7;
-			double startZ = getPos().getZ() + 0.5 + (world.rand.nextDouble() - 0.5) * 0.4;
-			double destX = target.getX() + 0.5;
-			double destY = target.getY() + 0.3;
-			double destZ = target.getZ() + 0.5;
-			//ParticleMana particle = new ParticleMana(world, startX, startY, startZ, destX, destY, destZ, 0, 1.2, 0);
-			//Minecraft.getMinecraft().effectRenderer.addEffect(particle);
-			InterstellarComets.wrapper.sendToAll(new PacketSpawnCustomParticle(startX, startY, startZ, destX, destY, destZ));
+			if(this.world.isRemote){
+				double startX = getPos().getX() + 0.5 + (world.rand.nextDouble() - 0.5) * 0.4;
+				double startY = getPos().getY() + 0.7;
+				double startZ = getPos().getZ() + 0.5 + (world.rand.nextDouble() - 0.5) * 0.4;
+				double destX = target.getX() + 0.5;
+				double destY = target.getY() + 0.3;
+				double destZ = target.getZ() + 0.5;
+				InterstellarComets.proxy.spawnParticle(startX, startY, startZ, destX, destY, destZ);
+			}
 		}
 	}
 

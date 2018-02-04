@@ -1,13 +1,13 @@
 package com.deerangle.main;
 
-import com.deerangle.block.ModBlocks;
+import com.deerangle.block.ModBlocks; 
 import com.deerangle.block.entity.TileEntityManaConcentrator;
 import com.deerangle.block.entity.TileEntityPedestal;
 import com.deerangle.entity.ModEntities;
 import com.deerangle.item.ModItems;
 import com.deerangle.network.PacketRequestUpdatePedestal;
-import com.deerangle.network.PacketSpawnCustomParticle;
 import com.deerangle.network.PacketUpdatePedestal;
+import com.deerangle.network.ServerProxy;
 
 import net.minecraft.init.Blocks;
 import net.minecraftforge.fml.common.Mod;
@@ -31,7 +31,7 @@ public class InterstellarComets {
 	@Instance
 	public static InterstellarComets instance;
 	
-	@SidedProxy(clientSide = "com.deerangle.main.ClientProxy", serverSide = "com.deerangle.main.ServerProxy")
+	@SidedProxy(clientSide = "com.deerangle.network.ClientProxy", serverSide = "com.deerangle.network.ServerProxy")
 	public static ServerProxy proxy;
 	
 	public static SimpleNetworkWrapper wrapper;
@@ -49,7 +49,6 @@ public class InterstellarComets {
 		wrapper = NetworkRegistry.INSTANCE.newSimpleChannel(MODID);
 		wrapper.registerMessage(new PacketUpdatePedestal.Handler(), PacketUpdatePedestal.class, 0, Side.CLIENT);
 		wrapper.registerMessage(new PacketRequestUpdatePedestal.Handler(), PacketRequestUpdatePedestal.class, 1, Side.SERVER);
-		wrapper.registerMessage(new PacketSpawnCustomParticle.Handler(), PacketSpawnCustomParticle.class, 2, Side.CLIENT);
 	}
 
 	@EventHandler

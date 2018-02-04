@@ -1,11 +1,12 @@
 package com.deerangle.particle;
 
-import org.lwjgl.opengl.GL11;
+import org.lwjgl.opengl.GL11; 
 import org.lwjgl.util.vector.Vector3f;
 
 import com.deerangle.main.InterstellarComets;
 
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.multiplayer.WorldClient;
 import net.minecraft.client.particle.Particle;
 import net.minecraft.client.particle.ParticleExplosion;
 import net.minecraft.client.particle.ParticleManager;
@@ -16,7 +17,6 @@ import net.minecraft.entity.Entity;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.Vec3d;
-import net.minecraft.world.World;
 
 public class ParticleMana extends Particle {
 
@@ -25,15 +25,15 @@ public class ParticleMana extends Particle {
 	private Vector3f position;
 	private Vector3f start;
 
-	public ParticleMana(World worldIn, double startX, double startY, double startZ) {
+	public ParticleMana(WorldClient worldIn, double startX, double startY, double startZ) {
 		this(worldIn, startX, startY, startZ, startX, startY, startZ);
 	}
 
-	public ParticleMana(World world, double startX, double startY, double startZ, double destX, double destY, double destZ) {
+	public ParticleMana(WorldClient world, double startX, double startY, double startZ, double destX, double destY, double destZ) {
 		this(world, startX, startY, startZ, destX, destY, destZ, 0, 0, 0);
 	}
 
-	public ParticleMana(World world, double startX, double startY, double startZ, double destX, double destY, double destZ, double velX, double velY, double velZ) {
+	public ParticleMana(WorldClient world, double startX, double startY, double startZ, double destX, double destY, double destZ, double velX, double velY, double velZ) {
 		super(world, startX, startY, startZ, 0, 0, 0);
 
 		this.start = new Vector3f((float) startX, (float) startY, (float) startZ);
