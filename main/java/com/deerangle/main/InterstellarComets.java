@@ -6,6 +6,7 @@ import com.deerangle.block.entity.TileEntityPedestal;
 import com.deerangle.entity.ModEntities;
 import com.deerangle.item.ModItems;
 import com.deerangle.network.PacketRequestUpdatePedestal;
+import com.deerangle.network.PacketSpawnCustomParticle;
 import com.deerangle.network.PacketUpdatePedestal;
 
 import net.minecraft.init.Blocks;
@@ -48,6 +49,7 @@ public class InterstellarComets {
 		wrapper = NetworkRegistry.INSTANCE.newSimpleChannel(MODID);
 		wrapper.registerMessage(new PacketUpdatePedestal.Handler(), PacketUpdatePedestal.class, 0, Side.CLIENT);
 		wrapper.registerMessage(new PacketRequestUpdatePedestal.Handler(), PacketRequestUpdatePedestal.class, 1, Side.SERVER);
+		wrapper.registerMessage(new PacketSpawnCustomParticle.Handler(), PacketSpawnCustomParticle.class, 2, Side.CLIENT);
 	}
 
 	@EventHandler

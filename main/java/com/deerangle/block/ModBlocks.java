@@ -1,7 +1,8 @@
 package com.deerangle.block;
 
-import java.util.ArrayList; 
+import java.util.ArrayList;
 
+import com.deerangle.block.item.ItemBlockCometicBrick;
 import com.deerangle.item.ModItems;
 import com.deerangle.main.InterstellarComets;
 import com.deerangle.main.ModTabs;

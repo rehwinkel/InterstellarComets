@@ -1,4 +1,7 @@
-package com.deerangle.block;
+package com.deerangle.block.item;
+
+import com.deerangle.block.BlockCometicBrick;
+import com.deerangle.block.BlockCometicBrick.EnumType;
 
 import net.minecraft.block.Block;
 import net.minecraft.creativetab.CreativeTabs;
