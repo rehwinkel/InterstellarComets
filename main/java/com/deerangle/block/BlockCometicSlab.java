@@ -2,9 +2,13 @@ package com.deerangle.block;
 
 import java.util.Random;
 
+import com.deerangle.main.ModTabs;
+
 import net.minecraft.block.BlockPlanks;
 import net.minecraft.block.BlockSlab;
+import net.minecraft.block.BlockStone;
 import net.minecraft.block.BlockStoneSlab;
+import net.minecraft.block.BlockStoneSlabNew;
 import net.minecraft.block.BlockWoodSlab;
 import net.minecraft.block.material.MapColor;
 import net.minecraft.block.material.Material;
@@ -23,22 +27,13 @@ import net.minecraft.world.World;
 
 public class BlockCometicSlab extends BlockSlab {
 
-	public static final PropertyEnum<BlockPlanks.EnumType> VARIANT = PropertyEnum.<BlockPlanks.EnumType>create("variant", BlockPlanks.EnumType.class);
-
 	public BlockCometicSlab() {
 		super(Material.ROCK);
-		IBlockState iblockstate = this.blockState.getBaseState();
 
-		if (!this.isDouble()) {
-			iblockstate = iblockstate.withProperty(HALF, BlockSlab.EnumBlockHalf.BOTTOM);
-		}
-
-		this.setDefaultState(iblockstate.withProperty(VARIANT, BlockPlanks.EnumType.OAK));
-		this.setCreativeTab(CreativeTabs.BUILDING_BLOCKS);
-	}
-
-	public MapColor getMapColor(IBlockState state, IBlockAccess worldIn, BlockPos pos) {
-		return ((BlockPlanks.EnumType) state.getValue(VARIANT)).getMapColor();
+		this.setDefaultState(this.blockState.getBaseState().withProperty(HALF, BlockSlab.EnumBlockHalf.BOTTOM));
+		this.setCreativeTab(ModTabs.tab_main);
+		this.setRegistryName("cometic_slab");
+		this.setUnlocalizedName("cometic_slab");
 	}
 
 	public Item getItemDropped(IBlockState state, Random rand, int fortune) {
@@ -46,15 +41,11 @@ public class BlockCometicSlab extends BlockSlab {
 	}
 
 	public ItemStack getItem(World worldIn, BlockPos pos, IBlockState state) {
-		return new ItemStack(ModBlocks.cometic_slab, 1, ((BlockPlanks.EnumType) state.getValue(VARIANT)).getMetadata());
+		return new ItemStack(ModBlocks.cometic_slab);
 	}
 
 	public String getUnlocalizedName(int meta) {
 		return super.getUnlocalizedName() + "." + BlockPlanks.EnumType.byMetadata(meta).getUnlocalizedName();
-	}
-
-	public IProperty<?> getVariantProperty() {
-		return VARIANT;
 	}
 
 	public Comparable<?> getTypeForItem(ItemStack stack) {
@@ -68,7 +59,7 @@ public class BlockCometicSlab extends BlockSlab {
 	}
 
 	public IBlockState getStateFromMeta(int meta) {
-		IBlockState iblockstate = this.getDefaultState().withProperty(VARIANT, BlockPlanks.EnumType.byMetadata(meta & 7));
+		IBlockState iblockstate = this.getDefaultState();
 
 		if (!this.isDouble()) {
 			iblockstate = iblockstate.withProperty(HALF, (meta & 8) == 0 ? BlockSlab.EnumBlockHalf.BOTTOM : BlockSlab.EnumBlockHalf.TOP);
@@ -78,27 +69,29 @@ public class BlockCometicSlab extends BlockSlab {
 	}
 
 	public int getMetaFromState(IBlockState state) {
-		int i = 0;
-		i = i | ((BlockPlanks.EnumType) state.getValue(VARIANT)).getMetadata();
-
 		if (!this.isDouble() && state.getValue(HALF) == BlockSlab.EnumBlockHalf.TOP) {
-			i |= 8;
+			return 1;
 		}
 
-		return i;
+		return 0;
 	}
 
 	protected BlockStateContainer createBlockState() {
-		return this.isDouble() ? new BlockStateContainer(this, new IProperty[] { VARIANT }) : new BlockStateContainer(this, new IProperty[] { HALF, VARIANT });
+		return this.isDouble() ? new BlockStateContainer(this, new IProperty[] { }) : new BlockStateContainer(this, new IProperty[] { HALF });
 	}
 
 	public int damageDropped(IBlockState state) {
-		return ((BlockPlanks.EnumType) state.getValue(VARIANT)).getMetadata();
+		return 0;
 	}
 
 	@Override
 	public boolean isDouble() {
 		return false;
+	}
+
+	@Override
+	public IProperty<?> getVariantProperty() {
+		return null;
 	}
 
 }
