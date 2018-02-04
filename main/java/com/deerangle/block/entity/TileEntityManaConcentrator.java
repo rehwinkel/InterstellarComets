@@ -1,6 +1,7 @@
 package com.deerangle.block.entity;
 
 import com.deerangle.block.ModBlocks;
+import com.deerangle.main.InterstellarComets;
 
 import net.minecraft.item.Item;
 import net.minecraft.tileentity.TileEntity;
@@ -53,9 +54,11 @@ public class TileEntityManaConcentrator extends TileEntity implements ITickable,
 				pass = false;
 			}else{
 				TileEntityPedestal te = (TileEntityPedestal) world.getTileEntity(p);
-				IItemHandler itemHandler = te.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY, EnumFacing.UP);
-				if(!itemHandler.getStackInSlot(0).getItem().equals(Item.getItemFromBlock(ModBlocks.block_comet))){
-					if(te.occupier == this){
+				if(te.occupier != this){
+					pass = false;
+				}else{
+					IItemHandler itemHandler = te.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY, EnumFacing.UP);
+					if(!itemHandler.getStackInSlot(0).getItem().equals(Item.getItemFromBlock(ModBlocks.block_comet))){
 						pass = false;
 					}
 				}
@@ -78,7 +81,7 @@ public class TileEntityManaConcentrator extends TileEntity implements ITickable,
 	}
 
 	private void changeOccupier(TileEntityPedestal te) {
-		System.out.println("Changing occupier to: " + te.occupier);
+		InterstellarComets.wrapper.sendToAll(new PacketOccupyPedastal(te, te.occupier));
 	}
 	
 }

@@ -1,6 +1,7 @@
 package com.deerangle.main;
 
-import com.deerangle.block.ModBlocks; 
+import com.deerangle.block.ModBlocks;
+import com.deerangle.block.entity.PacketOccupyPedastal;
 import com.deerangle.block.entity.TileEntityManaConcentrator;
 import com.deerangle.block.entity.TileEntityPedestal;
 import com.deerangle.entity.ModEntities;
@@ -47,9 +48,11 @@ public class InterstellarComets {
 		GameRegistry.registerTileEntity(TileEntityManaConcentrator.class, "mana_concentrator");
 		
 		proxy.preinit(event);
+		int netID = -1;
 		wrapper = NetworkRegistry.INSTANCE.newSimpleChannel(MODID);
-		wrapper.registerMessage(new PacketUpdatePedestal.Handler(), PacketUpdatePedestal.class, 0, Side.CLIENT);
-		wrapper.registerMessage(new PacketRequestUpdatePedestal.Handler(), PacketRequestUpdatePedestal.class, 1, Side.SERVER);
+		wrapper.registerMessage(new PacketUpdatePedestal.Handler(), PacketUpdatePedestal.class, netID++, Side.CLIENT);
+		wrapper.registerMessage(new PacketRequestUpdatePedestal.Handler(), PacketRequestUpdatePedestal.class, netID++, Side.SERVER);
+		wrapper.registerMessage(new PacketOccupyPedastal.Handler(), PacketOccupyPedastal.class, netID++, Side.CLIENT);
 	}
 
 	@EventHandler

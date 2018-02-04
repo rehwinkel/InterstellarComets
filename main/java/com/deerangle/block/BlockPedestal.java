@@ -1,5 +1,6 @@
 package com.deerangle.block;
 
+import com.deerangle.block.entity.PacketOccupyPedastal;
 import com.deerangle.block.entity.TileEntityPedestal;
 import com.deerangle.item.ModItems;
 import com.deerangle.main.InterstellarComets;
@@ -71,6 +72,7 @@ public class BlockPedestal extends Block {
 					player.setHeldItem(hand, getStackWithCount(player.getHeldItem(hand), player.getHeldItem(hand).getCount() - 1));
 				}
 			}
+			InterstellarComets.wrapper.sendToAll(new PacketOccupyPedastal(tile, tile.occupier));
 			tile.markDirty();
 		}
 		return true;
