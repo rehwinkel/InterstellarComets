@@ -78,9 +78,11 @@ public class ModBlocks {
 		ModelLoader.setCustomModelResourceLocation(Item.getItemFromBlock(pedestal), 0, new ModelResourceLocation(InterstellarComets.MODID + ":pedestal", "inventory"));
 		ModelLoader.setCustomModelResourceLocation(Item.getItemFromBlock(block_comet), 0, new ModelResourceLocation(InterstellarComets.MODID + ":block_comet", "inventory"));
 		ModelLoader.setCustomModelResourceLocation(Item.getItemFromBlock(mana_concentrator_base), 0, new ModelResourceLocation(InterstellarComets.MODID + ":mana_concentrator_full", "inventory"));
-//		for(int i = 0; i < BlockCometicBrick.EnumType.values().length; i++){
-//			ModelLoader.setCustomModelResourceLocation(Item.getItemFromBlock(pedestal), 0, new ModelResourceLocation(InterstellarComets.MODID + ":pedestal", "inventory"));
-//		}
+		ModelLoader.setCustomModelResourceLocation(Item.getItemFromBlock(cometic_brick), 0, new ModelResourceLocation(InterstellarComets.MODID + ":cometic_brick_stone", "inventory"));
+		ModelLoader.setCustomModelResourceLocation(Item.getItemFromBlock(cometic_brick), 1, new ModelResourceLocation(InterstellarComets.MODID + ":cometic_brick_brick", "inventory"));
+		ModelLoader.setCustomModelResourceLocation(Item.getItemFromBlock(cometic_brick), 2, new ModelResourceLocation(InterstellarComets.MODID + ":cometic_brick_cobble", "inventory"));
+		ModelLoader.setCustomModelResourceLocation(Item.getItemFromBlock(cometic_brick), 3, new ModelResourceLocation(InterstellarComets.MODID + ":cometic_brick_cracked", "inventory"));
+		ModelLoader.setCustomModelResourceLocation(Item.getItemFromBlock(cometic_brick), 4, new ModelResourceLocation(InterstellarComets.MODID + ":cometic_brick_chiseled", "inventory"));
 	}
 
 }

@@ -17,11 +17,6 @@ public class ItemBlockCometicBrick extends ItemBlock {
 	}
 	
 	@Override
-	public void getSubItems(CreativeTabs tab, NonNullList<ItemStack> items) {
-		this.block.getSubBlocks(tab, items);
-	}
-	
-	@Override
 	public int getMetadata(ItemStack stack) {
 		return this.getMetadata(stack.getItemDamage());
 	}

@@ -1,0 +1,6 @@
+{
+    "parent": "block/cube_all",
+    "textures": {
+        "all": "interstellarcomets:blocks/cometic_brick_cracked"
+    }
+}

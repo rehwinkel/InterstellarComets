@@ -15,7 +15,6 @@ import net.minecraft.util.NonNullList;
 
 public class BlockCometicBrick extends Block {
 
-	private String[] types = new String[] { "" };
 	public static final PropertyEnum TYPE = PropertyEnum.create("type", BlockCometicBrick.EnumType.class);
 
 	public BlockCometicBrick() {
@@ -30,8 +29,10 @@ public class BlockCometicBrick extends Block {
 
 	@Override
 	public void getSubBlocks(CreativeTabs itemIn, NonNullList<ItemStack> items) {
-		for (int i = 0; i < types.length; i++) {
-			items.add(new ItemStack(this, 1, i));
+		if(itemIn == this.getCreativeTabToDisplayOn()){
+			for (int i = 0; i < EnumType.values().length; i++) {
+				items.add(new ItemStack(this, 1, i));
+			}
 		}
 	}
 
