@@ -9,6 +9,5 @@ public class ModCrafting {
 
 	public static void load() {
 		GameRegistry.addSmelting(new ItemStack(ModBlocks.block_comet, 0), new ItemStack(ModBlocks.cometic_brick, 2), 0);
-
 	}
 }
