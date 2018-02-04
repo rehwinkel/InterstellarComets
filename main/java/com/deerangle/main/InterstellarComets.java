@@ -41,6 +41,7 @@ public class InterstellarComets {
 		ModItems.load();
 		ModBlocks.load();
 		ModEntities.load();
+		ModCrafting.load();
 		
 		GameRegistry.registerTileEntity(TileEntityPedestal.class, "pedastal");
 		GameRegistry.registerTileEntity(TileEntityManaConcentrator.class, "mana_concentrator");
