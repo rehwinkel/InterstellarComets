@@ -56,6 +56,10 @@ public class BlockCometicBrick extends Block {
 
 	@Override
 	public int damageDropped(IBlockState state) {
+		int coobleDrop = this.getMetaFromState(state);
+		if (coobleDrop == 0) {
+			return 2;
+		}
 		return getMetaFromState(state);
 	}
 
