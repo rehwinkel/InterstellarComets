@@ -7,11 +7,13 @@ import com.deerangle.network.PacketUpdatePedestal;
 import com.deerangle.particle.ParticleMana;
 
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.audio.Sound;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumParticleTypes;
 import net.minecraft.util.ITickable;
+import net.minecraft.util.SoundEvent;
 import net.minecraft.util.math.BlockPos;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.common.capabilities.ICapabilityProvider;
@@ -29,8 +31,7 @@ public class TileEntityPedestal extends TileEntity implements ITickable, ICapabi
 		}
 	};
 	public long placeTime;
-	public boolean enabled = false;
-	public BlockPos target;
+	public TileEntityManaConcentrator occupier;
 
 	@Override
 	public void onLoad() {
@@ -44,17 +45,18 @@ public class TileEntityPedestal extends TileEntity implements ITickable, ICapabi
 
 	@Override
 	public void update() {
-		if(this.enabled){
+		if(occupier != null && occupier.isActive){
 			if(this.world.isRemote){
 				double startX = getPos().getX() + 0.5 + (world.rand.nextDouble() - 0.5) * 0.4;
 				double startY = getPos().getY() + 0.7;
 				double startZ = getPos().getZ() + 0.5 + (world.rand.nextDouble() - 0.5) * 0.4;
-				double destX = target.getX() + 0.5;
-				double destY = target.getY() + 0.3;
-				double destZ = target.getZ() + 0.5;
+				double destX = occupier.getPos().getX() + 0.5;
+				double destY = occupier.getPos().getY() + 0.3;
+				double destZ = occupier.getPos().getZ() + 0.5;
 				InterstellarComets.proxy.spawnParticle(startX, startY, startZ, destX, destY, destZ);
 			}
 		}
+		//System.out.println(occupier);
 	}
 
 	@Override
