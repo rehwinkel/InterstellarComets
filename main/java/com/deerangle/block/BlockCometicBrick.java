@@ -1,5 +1,7 @@
 package com.deerangle.block;
 
+import java.util.List;
+
 import com.deerangle.main.ModTabs;
 
 import net.minecraft.block.Block;
@@ -13,6 +15,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.IStringSerializable;
 import net.minecraft.util.NonNullList;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 
 public class BlockCometicBrick extends Block {
@@ -37,6 +40,15 @@ public class BlockCometicBrick extends Block {
 			}
 		}
 	}
+	
+	@Override
+	public void getDrops(NonNullList<ItemStack> drops, IBlockAccess world, BlockPos pos, IBlockState state, int fortune) {
+		if(getMetaFromState(state) == 0){
+			drops.add(new ItemStack(this, 1, 2));
+			return;
+		}
+		drops.add(new ItemStack(this, 1, getMetaFromState(state)));
+	}
 
 	@Override
 	protected BlockStateContainer createBlockState() {
@@ -56,10 +68,6 @@ public class BlockCometicBrick extends Block {
 
 	@Override
 	public int damageDropped(IBlockState state) {
-		int coobleDrop = this.getMetaFromState(state);
-		if (coobleDrop == 0) {
-			return 2;
-		}
 		return getMetaFromState(state);
 	}
 

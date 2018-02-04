@@ -26,7 +26,6 @@ public class ModBlocks {
 	public static Block mana_concentrator_base;
 	public static Block block_comet;
 	public static Block cometic_brick;
-	public static Block cometic_slab;
 	
 	private static final ModBlocks instance = new ModBlocks();
 	
@@ -36,7 +35,6 @@ public class ModBlocks {
 		mana_concentrator = new BlockManaConcentrator();
 		mana_concentrator_base = new BlockManaConcentratorBase();
 		cometic_brick = new BlockCometicBrick();
-		cometic_slab = new BlockCometicSlab();
 		
 		MinecraftForge.EVENT_BUS.register(instance);
 	}
@@ -50,7 +48,6 @@ public class ModBlocks {
 		register(registry, mana_concentrator, null);
 		register(registry, mana_concentrator_base);
 		register(registry, cometic_brick, new ItemBlockCometicBrick(cometic_brick));
-		register(registry, cometic_slab);
 	}
 
 	private void register(IForgeRegistry<Block> registry, Block block) {

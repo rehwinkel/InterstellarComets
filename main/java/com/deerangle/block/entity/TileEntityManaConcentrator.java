@@ -19,8 +19,6 @@ public class TileEntityManaConcentrator extends TileEntity implements ITickable,
 	
 	public boolean isActive = false;
 
-	private boolean destroy;
-
 	@Override
 	public <T> T getCapability(Capability<T> capability, EnumFacing facing) {
 		if(hasCapability(capability, facing)){
@@ -40,35 +38,47 @@ public class TileEntityManaConcentrator extends TileEntity implements ITickable,
 	@Override
 	public void update() {
 		BlockPos[] poses = new BlockPos[] { this.pos.add(0, -1, 2), this.pos.add(0, -1, -2), this.pos.add(2, -1, 0), this.pos.add(-2, -1, 0) };
-		if(!destroy){
-			boolean pass = true;
-			for(BlockPos p : poses){
-				if(world.getBlockState(p).getBlock() != ModBlocks.pedestal){
-					pass = false;
-				}else{
-					TileEntityPedestal te = (TileEntityPedestal) world.getTileEntity(p);
-					IItemHandler itemHandler = te.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY, EnumFacing.UP);
-					if(!itemHandler.getStackInSlot(0).getItem().equals(Item.getItemFromBlock(ModBlocks.block_comet))){
+		
+		for(BlockPos p : poses){
+			TileEntityPedestal te = (TileEntityPedestal) world.getTileEntity(p);
+			if(te != null && te.occupier == null){
+				te.occupier = this;
+				changeOccupier(te);
+			}
+		}
+		
+		boolean pass = true;
+		for(BlockPos p : poses){
+			if(world.getBlockState(p).getBlock() != ModBlocks.pedestal){
+				pass = false;
+			}else{
+				TileEntityPedestal te = (TileEntityPedestal) world.getTileEntity(p);
+				IItemHandler itemHandler = te.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY, EnumFacing.UP);
+				if(!itemHandler.getStackInSlot(0).getItem().equals(Item.getItemFromBlock(ModBlocks.block_comet))){
+					if(te.occupier == this){
 						pass = false;
 					}
 				}
 			}
-			isActive = pass;
 		}
-		for(BlockPos p : poses){
-			TileEntityPedestal te = (TileEntityPedestal) world.getTileEntity(p);
-			if(te != null){
-				te.enabled = this.isActive;
-				te.target = this.pos;
-			}
-		}
-		destroy = false;
+		isActive = pass;
 	}
 	
 	public void onDestory() {
 		this.isActive = false;
-		this.destroy = true;
-		update();
+		BlockPos[] poses = new BlockPos[] { this.pos.add(0, -1, 2), this.pos.add(0, -1, -2), this.pos.add(2, -1, 0), this.pos.add(-2, -1, 0) };
+		
+		for(BlockPos p : poses){
+			TileEntityPedestal te = (TileEntityPedestal) world.getTileEntity(p);
+			if(te != null && te.occupier == this){
+				te.occupier = null;
+				changeOccupier(te);
+			}
+		}
+	}
+
+	private void changeOccupier(TileEntityPedestal te) {
+		System.out.println("Changing occupier to: " + te.occupier);
 	}
 	
 }
