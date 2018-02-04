@@ -12,6 +12,8 @@ import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.IStringSerializable;
 import net.minecraft.util.NonNullList;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.World;
 
 public class BlockCometicBrick extends Block {
 
@@ -29,7 +31,7 @@ public class BlockCometicBrick extends Block {
 
 	@Override
 	public void getSubBlocks(CreativeTabs itemIn, NonNullList<ItemStack> items) {
-		if(itemIn == this.getCreativeTabToDisplayOn()){
+		if (itemIn == this.getCreativeTabToDisplayOn()) {
 			for (int i = 0; i < EnumType.values().length; i++) {
 				items.add(new ItemStack(this, 1, i));
 			}
@@ -40,29 +42,29 @@ public class BlockCometicBrick extends Block {
 	protected BlockStateContainer createBlockState() {
 		return new BlockStateContainer(this, new IProperty[] { TYPE });
 	}
-	
+
 	@Override
 	public int getMetaFromState(IBlockState state) {
 		EnumType e = (EnumType) state.getValue(TYPE);
 		return e.getId();
 	}
-	
+
 	@Override
 	public IBlockState getStateFromMeta(int meta) {
 		return getDefaultState().withProperty(TYPE, EnumType.fromId(meta));
 	}
-	
+
 	@Override
 	public int damageDropped(IBlockState state) {
+		int coobleDrop = this.getMetaFromState(state);
+		if (coobleDrop == 0) {
+			return 2;
+		}
 		return getMetaFromState(state);
 	}
 
 	public enum EnumType implements IStringSerializable {
-		STONE(0, "stone"),
-		BRICK(1, "brick"),
-		COBBLE(2, "cobble"),
-		CRACKED(3, "cracked"),
-		CHISELED(4, "chiseled");
+		STONE(0, "stone"), BRICK(1, "brick"), COBBLE(2, "cobble"), CRACKED(3, "cracked"), CHISELED(4, "chiseled");
 
 		private String name;
 		private int id;
@@ -73,8 +75,8 @@ public class BlockCometicBrick extends Block {
 		}
 
 		public static EnumType fromId(int meta) {
-			for(EnumType e : values()){
-				if(e.getId() == meta){
+			for (EnumType e : values()) {
+				if (e.getId() == meta) {
 					return e;
 				}
 			}
