@@ -1,5 +1,7 @@
 package com.deerangle.entity;
 
+import com.deerangle.block.ModBlocks;
+
 import net.minecraft.client.renderer.entity.RenderEntityItem;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
@@ -9,6 +11,7 @@ import net.minecraft.entity.projectile.EntityThrowable;
 import net.minecraft.init.Blocks;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.EnumParticleTypes;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
 public class EntityComet extends Entity {
@@ -63,6 +66,7 @@ public class EntityComet extends Entity {
 	public void onImpact() {
 		this.setDead();
 		world.createExplosion(this, posX, world.getHeight((int) posX, (int) posZ), posZ, 3, true);
+		world.setBlockState(new BlockPos(posX, world.getHeight((int) posX, (int) posZ), posZ), ModBlocks.block_comet.getDefaultState());
 	}
 	
 	protected float getGravityVelocity() {

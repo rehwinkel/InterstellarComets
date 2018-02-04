@@ -1,5 +1,6 @@
 package com.deerangle.block;
 
+import com.deerangle.block.entity.TileEntityManaConcentrator;
 import com.deerangle.main.ModTabs;
 
 import net.minecraft.block.Block;
@@ -31,6 +32,8 @@ public class BlockManaConcentratorBase extends Block {
 	
 	@Override
 	public void breakBlock(World worldIn, BlockPos pos, IBlockState state) {
+		TileEntityManaConcentrator te = (TileEntityManaConcentrator) worldIn.getTileEntity(pos.add(0, 1, 0));
+		te.onDestory();
 		worldIn.setBlockToAir(pos.add(0, 1, 0));
 		super.breakBlock(worldIn, pos, state);
 	}

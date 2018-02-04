@@ -1,7 +1,5 @@
 package com.deerangle.block.entity;
 
-import javax.swing.plaf.basic.BasicComboBoxUI.ItemHandler;
-
 import com.deerangle.main.InterstellarComets;
 import com.deerangle.network.PacketRequestUpdatePedestal;
 import com.deerangle.network.PacketUpdatePedestal;
@@ -13,6 +11,7 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumParticleTypes;
 import net.minecraft.util.ITickable;
+import net.minecraft.util.math.BlockPos;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.common.capabilities.ICapabilityProvider;
 import net.minecraftforge.items.CapabilityItemHandler;
@@ -29,6 +28,8 @@ public class TileEntityPedestal extends TileEntity implements ITickable, ICapabi
 		}
 	};
 	public long placeTime;
+	public boolean enabled = false;
+	public BlockPos target;
 
 	@Override
 	public void onLoad() {
@@ -42,14 +43,16 @@ public class TileEntityPedestal extends TileEntity implements ITickable, ICapabi
 
 	@Override
 	public void update() {
-		double startX = getPos().getX() + 0.5 + (world.rand.nextDouble() - 0.5) * 0.4;
-		double startY = getPos().getY() + 0.7;
-		double startZ = getPos().getZ() + 0.5 + (world.rand.nextDouble() - 0.5) * 0.4;
-		double destX = 87.5;
-		double destY = 74.3;
-		double destZ = 197.5;
-		ParticleMana particle = new ParticleMana(world, startX, startY, startZ, destX, destY, destZ, 0, 1.2, 0);
-		Minecraft.getMinecraft().effectRenderer.addEffect(particle);
+		if(this.enabled){
+			double startX = getPos().getX() + 0.5 + (world.rand.nextDouble() - 0.5) * 0.4;
+			double startY = getPos().getY() + 0.7;
+			double startZ = getPos().getZ() + 0.5 + (world.rand.nextDouble() - 0.5) * 0.4;
+			double destX = target.getX() + 0.5;
+			double destY = target.getY() + 0.3;
+			double destZ = target.getZ() + 0.5;
+			ParticleMana particle = new ParticleMana(world, startX, startY, startZ, destX, destY, destZ, 0, 1.2, 0);
+			Minecraft.getMinecraft().effectRenderer.addEffect(particle);
+		}
 	}
 
 	@Override

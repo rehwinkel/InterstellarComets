@@ -28,8 +28,17 @@ public class BlockManaConcentrator extends Block {
 	
 	@Override
 	public void breakBlock(World worldIn, BlockPos pos, IBlockState state) {
-		worldIn.setBlockToAir(pos.add(0, -1, 0));
+		if(!worldIn.isRemote){
+			TileEntityManaConcentrator te = (TileEntityManaConcentrator) worldIn.getTileEntity(pos);
+			te.onDestory();
+			worldIn.setBlockToAir(pos.add(0, -1, 0));
+		}
 		super.breakBlock(worldIn, pos, state);
+	}
+	
+	@Override
+	public void dropBlockAsItemWithChance(World worldIn, BlockPos pos, IBlockState state, float chance, int fortune) {
+		super.dropBlockAsItemWithChance(worldIn, pos.add(0, -1, 0), state, chance, fortune);
 	}
 	
 	@Override
