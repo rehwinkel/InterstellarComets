@@ -8,12 +8,12 @@ import net.minecraft.entity.Entity;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
-public class BlockCometicFireTrap extends Block {
+public class BlockFireTrap extends Block {
 
-	public BlockCometicFireTrap() {
+	public BlockFireTrap() {
 		super(Material.ROCK);
-		this.setRegistryName("cometic_fireTrap");
-		this.setUnlocalizedName("cometic_fireTrap");
+		this.setRegistryName("fire_trap");
+		this.setUnlocalizedName("fire_trap");
 		this.setCreativeTab(ModTabs.tab_main);
 		this.setHarvestLevel("pickaxe", 1);
 		this.setHardness(2F);

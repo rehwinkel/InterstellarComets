@@ -11,7 +11,7 @@ public class ModTabs {
 		
 		@Override
 		public ItemStack getTabIconItem() {
-			return new ItemStack(ModItems.shit);
+			return new ItemStack(ModItems.concentrated_mana_crystal);
 		}
 	};
 	

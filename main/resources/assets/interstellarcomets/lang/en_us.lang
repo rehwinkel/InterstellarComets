@@ -1,2 +1,10 @@
-item.shit.name=Shit
 item.concentrated_mana_crystal.name=Concentrated Mana Crystal
+tile.mana_concentrator_base.name=Mana Concentrator
+tile.pedestal.name=Pedestal
+tile.block_comet.name=Comet
+tile.cometic_brick_stone.name=Cometic Stone
+tile.cometic_brick_brick.name=Cometic Bricks
+tile.cometic_brick_cobble.name=Cobbled Cometic Stone
+tile.cometic_brick_chiseled.name=Chiseled Cometic Bricks
+tile.cometic_brick_cracked.name=Cracked Cometic Bricks
+tile.fire_trap.name=Ardent Cometic Bricks

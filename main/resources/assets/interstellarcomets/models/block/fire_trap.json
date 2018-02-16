@@ -1,6 +1,6 @@
 {
     "parent": "block/cube_all",
     "textures": {
-        "all": "interstellarcomets:blocks/cometic_firetrap"
+        "all": "interstellarcomets:blocks/fire_trap"
     }
 }

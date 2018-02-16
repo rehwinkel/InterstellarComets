@@ -56,7 +56,6 @@ public class TileEntityPedestal extends TileEntity implements ITickable, ICapabi
 				InterstellarComets.proxy.spawnParticle(startX, startY, startZ, destX, destY, destZ);
 			}
 		}
-		//System.out.println(occupier);
 	}
 
 	@Override

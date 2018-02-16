@@ -37,25 +37,59 @@ public class TileEntityManaConcentrator extends TileEntity implements ITickable,
 		return super.hasCapability(capability, facing);
 	}
 
+	public boolean last_isActive = false;
+	
 	@Override
 	public void update() {
 		BlockPos[] poses = new BlockPos[] { this.pos.add(0, -1, 2), this.pos.add(0, -1, -2), this.pos.add(2, -1, 0), this.pos.add(-2, -1, 0) };
 		
+		updatePedestals(this);
+		
+		isActive = canActivate();
+		
+		if(!isActive){
+			updatePedestals(null);
+		}
+		
+		if(last_isActive != isActive){
+			updateOccupier();
+		}
+		
+		last_isActive = isActive;
+	}
+
+	public void updatePedestals(TileEntityManaConcentrator ti){
+		BlockPos[] poses = new BlockPos[] { this.pos.add(0, -1, 2), this.pos.add(0, -1, -2), this.pos.add(2, -1, 0), this.pos.add(-2, -1, 0) };
+		
 		for(BlockPos p : poses){
 			TileEntityPedestal te = (TileEntityPedestal) world.getTileEntity(p);
-			if(te != null && te.occupier == null){
-				te.occupier = this;
+			if(te != null && (te.occupier == this || te.occupier == null)){
+				te.occupier = ti;
+			}
+		}
+	}
+	
+	public void updateOccupier(){
+		BlockPos[] poses = new BlockPos[] { this.pos.add(0, -1, 2), this.pos.add(0, -1, -2), this.pos.add(2, -1, 0), this.pos.add(-2, -1, 0) };
+		
+		for(BlockPos p : poses){
+			TileEntityPedestal te = (TileEntityPedestal) world.getTileEntity(p);
+			if(te != null && te.occupier == this){
 				changeOccupier(te);
 			}
 		}
+	}
+	
+	public boolean canActivate(){
+		BlockPos[] positions = new BlockPos[] { this.pos.add(0, -1, 2), this.pos.add(0, -1, -2), this.pos.add(2, -1, 0), this.pos.add(-2, -1, 0) };
 		
 		boolean pass = true;
-		for(BlockPos p : poses){
+		for(BlockPos p : positions){
 			if(world.getBlockState(p).getBlock() != ModBlocks.pedestal){
 				pass = false;
 			}else{
 				TileEntityPedestal te = (TileEntityPedestal) world.getTileEntity(p);
-				if(te.occupier != this){
+				if(te.occupier != this && te.occupier != null){
 					pass = false;
 				}else{
 					IItemHandler itemHandler = te.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY, EnumFacing.UP);
@@ -66,24 +100,20 @@ public class TileEntityManaConcentrator extends TileEntity implements ITickable,
 			}
 		}
 		
-		isActive = pass;
+		return pass;
 	}
 	
 	public void onDestory() {
 		this.isActive = false;
-		BlockPos[] poses = new BlockPos[] { this.pos.add(0, -1, 2), this.pos.add(0, -1, -2), this.pos.add(2, -1, 0), this.pos.add(-2, -1, 0) };
-		
-		for(BlockPos p : poses){
-			TileEntityPedestal te = (TileEntityPedestal) world.getTileEntity(p);
-			if(te != null && te.occupier == this){
-				te.occupier = null;
-				changeOccupier(te);
-			}
-		}
+		updatePedestals(null);
+		updateOccupier();
+		//TODO: missing update of client on break!
 	}
 
 	private void changeOccupier(TileEntityPedestal te) {
-		InterstellarComets.wrapper.sendToAll(new PacketOccupyPedastal(te, te.occupier));
+		if(!world.isRemote){
+			InterstellarComets.wrapper.sendToAll(new PacketOccupyPedastal(te, te.occupier));
+		}
 	}
 	
 }

@@ -25,12 +25,8 @@ public class ModBlocks {
 	public static Block mana_concentrator;
 	public static Block mana_concentrator_base;
 	public static Block block_comet;
-	public static Block cometic_brick;
-<<<<<<< HEAD
-	public static Block cometic_slab;
-	public static Block cometic_fireTrap;
-=======
->>>>>>> 0aa5d8168ccba36c768a0a2cd1377f4930d48676
+	public static BlockCometicBrick cometic_brick;
+	public static Block fire_trap;
 	
 	private static final ModBlocks instance = new ModBlocks();
 	
@@ -40,11 +36,7 @@ public class ModBlocks {
 		mana_concentrator = new BlockManaConcentrator();
 		mana_concentrator_base = new BlockManaConcentratorBase();
 		cometic_brick = new BlockCometicBrick();
-<<<<<<< HEAD
-		cometic_slab = new BlockCometicSlab();
-		cometic_fireTrap = new BlockCometicFireTrap();
-=======
->>>>>>> 0aa5d8168ccba36c768a0a2cd1377f4930d48676
+		fire_trap = new BlockFireTrap();
 		
 		MinecraftForge.EVENT_BUS.register(instance);
 	}
@@ -58,12 +50,7 @@ public class ModBlocks {
 		register(registry, mana_concentrator, null);
 		register(registry, mana_concentrator_base);
 		register(registry, cometic_brick, new ItemBlockCometicBrick(cometic_brick));
-<<<<<<< HEAD
-		register(registry, cometic_slab);
-		register(registry, cometic_fireTrap);
-
-=======
->>>>>>> 0aa5d8168ccba36c768a0a2cd1377f4930d48676
+		register(registry, fire_trap);
 	}
 
 	private void register(IForgeRegistry<Block> registry, Block block) {
@@ -100,8 +87,7 @@ public class ModBlocks {
 		ModelLoader.setCustomModelResourceLocation(Item.getItemFromBlock(cometic_brick), 2, new ModelResourceLocation(InterstellarComets.MODID + ":cometic_brick_cobble", "inventory"));
 		ModelLoader.setCustomModelResourceLocation(Item.getItemFromBlock(cometic_brick), 3, new ModelResourceLocation(InterstellarComets.MODID + ":cometic_brick_cracked", "inventory"));
 		ModelLoader.setCustomModelResourceLocation(Item.getItemFromBlock(cometic_brick), 4, new ModelResourceLocation(InterstellarComets.MODID + ":cometic_brick_chiseled", "inventory"));
-		ModelLoader.setCustomModelResourceLocation(Item.getItemFromBlock(cometic_fireTrap), 0, new ModelResourceLocation(InterstellarComets.MODID + ":cometic_fireTrap", "inventory"));
-
+		ModelLoader.setCustomModelResourceLocation(Item.getItemFromBlock(fire_trap), 0, new ModelResourceLocation(InterstellarComets.MODID + ":fire_trap", "inventory"));
 	}
 
 }
